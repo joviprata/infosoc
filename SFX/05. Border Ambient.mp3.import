@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bmdyf31bmk5rp"
+path="res://.godot/imported/05. Border Ambient.mp3-f4533fa88be55fb75d7334794ea1d742.mp3str"
+
+[deps]
+
+source_file="res://SFX/05. Border Ambient.mp3"
+dest_files=["res://.godot/imported/05. Border Ambient.mp3-f4533fa88be55fb75d7334794ea1d742.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

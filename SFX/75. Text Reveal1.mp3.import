@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bbq76kvthotvj"
+path="res://.godot/imported/75. Text Reveal1.mp3-95c22471dc48abc0a90375f2f719223b.mp3str"
+
+[deps]
+
+source_file="res://SFX/75. Text Reveal1.mp3"
+dest_files=["res://.godot/imported/75. Text Reveal1.mp3-95c22471dc48abc0a90375f2f719223b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

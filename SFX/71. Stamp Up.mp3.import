@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://csd3kbw3yp48x"
+path="res://.godot/imported/71. Stamp Up.mp3-e15b9c54a17eb587f925dfe1512b430b.mp3str"
+
+[deps]
+
+source_file="res://SFX/71. Stamp Up.mp3"
+dest_files=["res://.godot/imported/71. Stamp Up.mp3-e15b9c54a17eb587f925dfe1512b430b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

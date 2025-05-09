@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ctep5rlcy5v5p"
+path="res://.godot/imported/19. Button Up.mp3-6f8e7cb99ecb5d12316c1e6a2f3a1f2b.mp3str"
+
+[deps]
+
+source_file="res://SFX/19. Button Up.mp3"
+dest_files=["res://.godot/imported/19. Button Up.mp3-6f8e7cb99ecb5d12316c1e6a2f3a1f2b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cmsr4inp1xe3g"
+path="res://.godot/imported/74. Text Reveal0.mp3-a00c1aac2ae5eb7ef9b4b52337efa2a5.mp3str"
+
+[deps]
+
+source_file="res://SFX/74. Text Reveal0.mp3"
+dest_files=["res://.godot/imported/74. Text Reveal0.mp3-a00c1aac2ae5eb7ef9b4b52337efa2a5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

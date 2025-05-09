@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bs2cnwkbilifw"
+path="res://.godot/imported/85. Traveler Walkout.mp3-407600842ba705a52aadd1592d00b853.mp3str"
+
+[deps]
+
+source_file="res://SFX/85. Traveler Walkout.mp3"
+dest_files=["res://.godot/imported/85. Traveler Walkout.mp3-407600842ba705a52aadd1592d00b853.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cg2nks6wkpc1o"
+path="res://.godot/imported/29. Heavy Drop.mp3-dfa0c6ab0e0298fe25663f03af90fe54.mp3str"
+
+[deps]
+
+source_file="res://SFX/29. Heavy Drop.mp3"
+dest_files=["res://.godot/imported/29. Heavy Drop.mp3-dfa0c6ab0e0298fe25663f03af90fe54.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
