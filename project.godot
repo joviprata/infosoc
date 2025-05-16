@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="SBC_PapersPlease"
+run/main_scene="uid://cj6yhive8adt7"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
