@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbl3378ad4hy4"]
+
+[ext_resource type="Texture2D" uid="uid://dc7rcg1w0u62" path="res://Assets/Background.png" id="1_i0l5x"]
+[ext_resource type="Script" uid="uid://dfsvwy1kbqb00" path="res://Scripts/02_game.gd" id="1_s865h"]
+[ext_resource type="Texture2D" uid="uid://dgn1ivupsoov" path="res://Assets/Foreground.png" id="2_s865h"]
+[ext_resource type="PackedScene" uid="uid://cj6yhive8adt7" path="res://Scenes/DraggableObject.tscn" id="4_w72w4"]
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s865h")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 540.0
+texture = ExtResource("1_i0l5x")
+
+[node name="Foreground" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 540.0
+texture = ExtResource("2_s865h")
+
+[node name="DraggableObject" parent="." instance=ExtResource("4_w72w4")]
+position = Vector2(600, 456)

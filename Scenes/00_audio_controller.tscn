@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjk8m1r55yoq0"]
+
+[ext_resource type="AudioStream" uid="uid://bvv1akdtikb8h" path="res://SFX/01. Booth Ambient.mp3" id="1_ur1lo"]
+[ext_resource type="AudioStream" uid="uid://cp60p8u4ces8o" path="res://Music/Fiscal SBC Menu Song MP3.mp3" id="2_014g1"]
+
+[sub_resource type="GDScript" id="GDScript_hf1qp"]
+script/source = "extends Node2D
+
+@onready var menu_song = $Menu_Song
+@onready var inside_ambience = $Inside_Ambience
+@onready var outside_ambience = $Outside_Ambience
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+	
+func start_menu_song():
+	if not menu_song.is_playing():
+		menu_song.play()
+		#outside_ambience.stop()
+		inside_ambience.stop()
+
+func start_outside_ambience_sound():
+	if not outside_ambience.is_playing():
+		menu_song.stop()
+		#outside_ambience.play()
+		inside_ambience.stop()
+
+func start_inside_ambience_sound():
+	if not inside_ambience.is_playing():
+		menu_song.stop()
+		#outside_ambience.stop()
+		inside_ambience.play()
+		
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="AudioController" type="Node2D"]
+script = SubResource("GDScript_hf1qp")
+
+[node name="Inside_Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_ur1lo")
+parameters/looping = true
+
+[node name="Menu_Song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_014g1")
+parameters/looping = true
