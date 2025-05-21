@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbl3378ad4hy4"]
+[gd_scene load_steps=6 format=3 uid="uid://bbl3378ad4hy4"]
 
 [ext_resource type="Texture2D" uid="uid://dc7rcg1w0u62" path="res://Assets/Background.png" id="1_i0l5x"]
 [ext_resource type="Script" uid="uid://dfsvwy1kbqb00" path="res://Scripts/02_game.gd" id="1_s865h"]
 [ext_resource type="Texture2D" uid="uid://dgn1ivupsoov" path="res://Assets/Foreground.png" id="2_s865h"]
 [ext_resource type="PackedScene" uid="uid://cj6yhive8adt7" path="res://Scenes/DraggableObject.tscn" id="4_w72w4"]
+
+[sub_resource type="GDScript" id="GDScript_w72w4"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -28,3 +30,57 @@ texture = ExtResource("2_s865h")
 
 [node name="DraggableObject" parent="." instance=ExtResource("4_w72w4")]
 position = Vector2(600, 456)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = SubResource("GDScript_w72w4")
+
+[node name="menu_de_opcoes" type="Button" parent="CanvasLayer"]
+offset_left = 23.0
+offset_top = 22.0
+offset_right = 90.0
+offset_bottom = 96.0
+scale = Vector2(0.564103, 0.470588)
+text = "menu
+"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/menu_de_opcoes"]
+layout_mode = 0
+offset_right = 69.0
+offset_bottom = 74.0
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+visible = false
+
+[node name="MenuOpcoes" type="VBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 405.0
+offset_top = 208.0
+offset_right = 589.0
+offset_bottom = 374.0
+scale = Vector2(0.997139, 0.990739)
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="voltar" type="Button" parent="CanvasLayer/Panel/MenuOpcoes"]
+layout_mode = 2
+text = "VOLTAR
+"
+
+[node name="voltar_menu" type="Button" parent="CanvasLayer/Panel/MenuOpcoes"]
+layout_mode = 2
+text = "VOLTAR PARA O MENU"
+
+[node name="opcoes" type="Button" parent="CanvasLayer/Panel/MenuOpcoes"]
+layout_mode = 2
+text = "OPCOES"
+
+[node name="sair" type="Button" parent="CanvasLayer/Panel/MenuOpcoes"]
+layout_mode = 2
+text = "SAIR"
+
+[connection signal="pressed" from="CanvasLayer/menu_de_opcoes" to="." method="_on_menu_de_opcoes_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MenuOpcoes/voltar" to="." method="_on_voltar_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MenuOpcoes/voltar_menu" to="." method="_on_voltar_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MenuOpcoes/opcoes" to="." method="_on_opcoes_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MenuOpcoes/sair" to="." method="_on_sair_pressed"]
