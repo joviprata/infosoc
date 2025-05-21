@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbl3378ad4hy4"]
+[gd_scene load_steps=7 format=3 uid="uid://bbl3378ad4hy4"]
 
 [ext_resource type="Texture2D" uid="uid://dc7rcg1w0u62" path="res://Assets/Background.png" id="1_i0l5x"]
 [ext_resource type="Script" uid="uid://dfsvwy1kbqb00" path="res://Scripts/02_game.gd" id="1_s865h"]
 [ext_resource type="Texture2D" uid="uid://dgn1ivupsoov" path="res://Assets/Foreground.png" id="2_s865h"]
 [ext_resource type="PackedScene" uid="uid://cj6yhive8adt7" path="res://Scenes/DraggableObject.tscn" id="4_w72w4"]
+[ext_resource type="PackedScene" uid="uid://bwrnef0k7epxu" path="res://Scenes/DraggableObject2.tscn" id="5_1wk4w"]
 
 [sub_resource type="GDScript" id="GDScript_w72w4"]
 
@@ -24,12 +25,17 @@ texture = ExtResource("1_i0l5x")
 
 [node name="Foreground" type="TextureRect" parent="."]
 layout_mode = 0
+offset_top = -1.0
 offset_right = 960.0
-offset_bottom = 540.0
+offset_bottom = 539.0
 texture = ExtResource("2_s865h")
 
 [node name="DraggableObject" parent="." instance=ExtResource("4_w72w4")]
-position = Vector2(600, 456)
+position = Vector2(601, 455)
+
+[node name="DraggableObject2" parent="." instance=ExtResource("5_1wk4w")]
+position = Vector2(839, 467)
+gravity_scale = 0.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = SubResource("GDScript_w72w4")
