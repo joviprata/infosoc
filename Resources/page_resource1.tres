@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PageResource" load_steps=2 format=3 uid="uid://ctao60qr0oct5"]
+
+[ext_resource type="Script" uid="uid://bcinctri45r5d" path="res://Scripts/page_resource.gd" id="1_ajx0j"]
+
+[resource]
+script = ExtResource("1_ajx0j")
+textDescription = ""
+metadata/_custom_type_script = "uid://bcinctri45r5d"

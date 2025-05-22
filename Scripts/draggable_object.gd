@@ -6,6 +6,8 @@ extends RigidBody2D
 
 var dragging := false
 
+signal on_dropped(body : RigidBody2D, pos : Vector2)
+
 func _ready() -> void:
 	# Deixa o corpo inicialmente parado
 	freeze = true
@@ -22,6 +24,11 @@ func _input(event: InputEvent) -> void:
 			# Solta o objeto
 			dragging = false
 			freeze = false
+			if on_dropped.has_connections():
+				on_dropped.emit(self,event.position)
+	
+	if Input.is_action_pressed("touch_contact"):
+		print("Interacting")
 
 func _physics_process(delta: float) -> void:
 	if dragging:

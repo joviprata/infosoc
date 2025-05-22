@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbl3378ad4hy4"]
+[gd_scene load_steps=8 format=3 uid="uid://bbl3378ad4hy4"]
 
 [ext_resource type="Texture2D" uid="uid://dc7rcg1w0u62" path="res://Assets/Background.png" id="1_i0l5x"]
 [ext_resource type="Script" uid="uid://dfsvwy1kbqb00" path="res://Scripts/02_game.gd" id="1_s865h"]
 [ext_resource type="Texture2D" uid="uid://dgn1ivupsoov" path="res://Assets/Foreground.png" id="2_s865h"]
 [ext_resource type="PackedScene" uid="uid://cj6yhive8adt7" path="res://Scenes/DraggableObject.tscn" id="4_w72w4"]
 [ext_resource type="PackedScene" uid="uid://bwrnef0k7epxu" path="res://Scenes/DraggableObject2.tscn" id="5_1wk4w"]
+[ext_resource type="PackedScene" uid="uid://bcwkjth4bkslt" path="res://Scenes/Paper.tscn" id="6_3ja3l"]
 
 [sub_resource type="GDScript" id="GDScript_w72w4"]
 
@@ -30,10 +31,15 @@ offset_right = 960.0
 offset_bottom = 539.0
 texture = ExtResource("2_s865h")
 
+[node name="Page" parent="." instance=ExtResource("6_3ja3l")]
+position = Vector2(242, 238)
+
 [node name="DraggableObject" parent="." instance=ExtResource("4_w72w4")]
+z_index = 5
 position = Vector2(601, 455)
 
 [node name="DraggableObject2" parent="." instance=ExtResource("5_1wk4w")]
+process_priority = 5
 position = Vector2(839, 467)
 gravity_scale = 0.0
 
@@ -85,6 +91,7 @@ text = "OPCOES"
 layout_mode = 2
 text = "SAIR"
 
+[connection signal="on_dropped" from="DraggableObject" to="Page" method="_on_stamp_aproval_dropped"]
 [connection signal="pressed" from="CanvasLayer/menu_de_opcoes" to="." method="_on_menu_de_opcoes_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/MenuOpcoes/voltar" to="." method="_on_voltar_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/MenuOpcoes/voltar_menu" to="." method="_on_voltar_menu_pressed"]
