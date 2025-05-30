@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://c5latgcvqtdn6" path="res://Scripts/page_object.gd" id="1_j3gxa"]
 [ext_resource type="FontFile" uid="uid://dgrnxjw2gm3le" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="3_ph2xu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j3gxa"]
-size = Vector2(120, 60)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ph2xu"]
+size = Vector2(172, 82)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aaour"]
 
@@ -20,17 +20,17 @@ RichTextLabel/font_sizes/bold_font_size = 16
 RichTextLabel/styles/focus = SubResource("StyleBoxTexture_aaour")
 RichTextLabel/styles/normal = SubResource("StyleBoxTexture_cacma")
 
-[node name="Page" type="Node2D"]
+[node name="Page" type="StaticBody2D" groups=["droppable"]]
+disable_mode = 2
+collision_layer = 2
 script = ExtResource("1_j3gxa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_03uk3")
+metadata/_edit_lock_ = true
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(60, 122)
-shape = SubResource("RectangleShape2D_j3gxa")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ph2xu")
 
 [node name="Description" type="RichTextLabel" parent="."]
 offset_left = -138.0
@@ -41,3 +41,4 @@ theme = SubResource("Theme_mh1ba")
 bbcode_enabled = true
 text = "LOREM IPSUM KEKEKEKEKE"
 scroll_following = true
+metadata/_edit_lock_ = true

@@ -1,26 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://cj6yhive8adt7"]
+[gd_scene load_steps=6 format=3 uid="uid://cj6yhive8adt7"]
 
 [ext_resource type="Texture2D" uid="uid://c7urwaok025rw" path="res://Assets/Stamp APPROVED.png" id="1_23s78"]
 [ext_resource type="Script" uid="uid://cvc1tsvivwcvw" path="res://Scripts/draggable_object.gd" id="1_62gka"]
+[ext_resource type="Script" uid="uid://dv8vggsqx734l" path="res://Scripts/stamp.gd" id="3_m51b3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62gka"]
-size = Vector2(145, 67)
+size = Vector2(196, 196)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m51b3"]
-size = Vector2(100, 100)
+[sub_resource type="CircleShape2D" id="CircleShape2D_m51b3"]
+radius = 100.0
 
-[node name="DraggableObject" type="RigidBody2D"]
-gravity_scale = 0.0
+[node name="DraggableObject" type="Node2D"]
+top_level = true
 script = ExtResource("1_62gka")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_23s78")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 25.5)
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_62gka")
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="."]
-shape = SubResource("RectangleShape2D_m51b3")
+shape = SubResource("CircleShape2D_m51b3")
 action = "touch_contact"
+
+[node name="Stamp" type="Node" parent="." node_paths=PackedStringArray("dragObject")]
+script = ExtResource("3_m51b3")
+dragObject = NodePath("..")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
