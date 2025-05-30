@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://da14lwp7ve1be"]
+
+[ext_resource type="Script" uid="uid://bg2te223kx20j" path="res://Scripts/00_button_sounds.gd" id="1_tf3mq"]
+[ext_resource type="AudioStream" uid="uid://bfhl08na5cpdk" path="res://SFX/17. Button Down.mp3" id="1_ttxly"]
+[ext_resource type="AudioStream" uid="uid://ctep5rlcy5v5p" path="res://SFX/19. Button Up.mp3" id="3_4n47w"]
+
+[node name="ButtonSounds" type="Node2D"]
+script = ExtResource("1_tf3mq")
+
+[node name="Button_Down_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_ttxly")
+
+[node name="Button_Up_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4n47w")

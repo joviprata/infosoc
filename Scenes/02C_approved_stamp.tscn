@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3i20ps4h8m1a"]
+
+[ext_resource type="Script" uid="uid://dudwoeskerhb5" path="res://Scripts/02C_approved_stamp.gd" id="1_pjhov"]
+[ext_resource type="Texture2D" uid="uid://c7urwaok025rw" path="res://Assets/Stamp APPROVED.png" id="2_7p6ok"]
+[ext_resource type="AudioStream" uid="uid://csd3kbw3yp48x" path="res://SFX/71. Stamp Up.mp3" id="3_7p6ok"]
+[ext_resource type="AudioStream" uid="uid://cv2d48qb1830w" path="res://SFX/70. Stamp Down.mp3" id="3_8y60l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8y60l"]
+size = Vector2(148, 123)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3slyg"]
+size = Vector2(100, 100)
+
+[node name="ApprovedStamp" type="CharacterBody2D"]
+script = ExtResource("1_pjhov")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_7p6ok")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_8y60l")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+shape = SubResource("RectangleShape2D_3slyg")
+action = "touch_contact"
+
+[node name="StampUpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7p6ok")
+
+[node name="StampDownSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8y60l")

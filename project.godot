@@ -13,16 +13,20 @@ config_version=5
 config/name="Fiscal SBC"
 run/main_scene="uid://ctfpmsdyjexo3"
 config/features=PackedStringArray("4.4", "Mobile")
+boot_splash/image="uid://c73hvr5bql3s0"
+boot_splash/fullsize=false
 config/icon="res://icon.svg"
 
 [autoload]
 
 AudioController="*res://Scenes/00_audio_controller.tscn"
+ButtonSounds="*res://Scenes/00_button_sounds.tscn"
 
 [display]
 
 window/size/viewport_width=960
 window/size/viewport_height=540
+window/size/mode=3
 window/size/borderless=true
 window/stretch/mode="canvas_items"
 
@@ -37,5 +41,6 @@ touch_contact={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
