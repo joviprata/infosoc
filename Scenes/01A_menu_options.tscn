@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpmpho8hwe4g3"]
+
+[ext_resource type="FontFile" uid="uid://dgrnxjw2gm3le" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="1_3j5q0"]
+[ext_resource type="Script" uid="uid://qpyf3eib7p2l" path="res://Scenes/01a_menu_options.gd" id="1_oykym"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oykym")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.03
+anchor_top = -0.031
+anchor_right = -0.03
+anchor_bottom = -0.031
+offset_left = 30.8
+offset_top = 16.74
+offset_right = 988.8
+offset_bottom = 556.74
+color = Color(0.223529, 0.192157, 0.294118, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 960.0
+offset_bottom = 540.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Toggle_Fullscreen" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_3j5q0")
+theme_override_font_sizes/font_size = 30
+text = "TOGGLE FULLSCREEN"
+
+[node name="Options_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_3j5q0")
+theme_override_font_sizes/font_size = 30
+text = "OPTIONS"
+
+[node name="Return_to_Menu" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_3j5q0")
+theme_override_font_sizes/font_size = 30
+text = "RETURN TO MENU"
