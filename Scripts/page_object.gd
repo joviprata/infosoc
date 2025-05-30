@@ -18,10 +18,17 @@ func set_page_resource(pageRes : PageResource) -> void:
 		on_page_changed.emit(pageRes)
 
 
-func _on_stamp_aproval_dropped(body: RigidBody2D, pos: Vector2) -> void:
-	
+func _on_approved_stamp_on_dropped(body: CharacterBody2D, pos: Vector2) -> void:
 		var ap = Sprite2D.new()
 		ap.texture = approvedTexture
 		add_child(ap)
-		ap.rotation = randf_range(0,2.5)
-		ap.global_position = pos
+		#ap.rotation = randf_range(0,2.5)
+		ap.global_position = pos + Vector2(0, 90)
+
+
+func _on_denied_stamp_on_dropped(body: CharacterBody2D, pos: Vector2) -> void:
+		var ap = Sprite2D.new()
+		ap.texture = deniedTexture
+		add_child(ap)
+		#ap.rotation = randf_range(0,2.5)
+		ap.global_position = pos + Vector2(0, 79)

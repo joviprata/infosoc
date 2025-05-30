@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://c5x70y5m6x5ii"]
+
+[ext_resource type="Script" uid="uid://2dqubvwtnnx1" path="res://Scripts/02A_random_character.gd" id="1_h653g"]
+[ext_resource type="Texture2D" uid="uid://iwchgdfaaq28" path="res://Characters/A1.png" id="1_urwsg"]
+[ext_resource type="Texture2D" uid="uid://dtjov2642rlp2" path="res://Characters/A2.png" id="2_h653g"]
+[ext_resource type="Texture2D" uid="uid://cvvw4e1f2wu1m" path="res://Characters/B1.png" id="3_jm4nh"]
+[ext_resource type="Texture2D" uid="uid://b7ayt0aktb73g" path="res://Characters/B2.png" id="4_km38b"]
+[ext_resource type="Texture2D" uid="uid://csajfvrg7v8j6" path="res://Characters/C1.png" id="5_dstr4"]
+[ext_resource type="Texture2D" uid="uid://eawgaap85otd" path="res://Characters/C2.png" id="6_emuvn"]
+[ext_resource type="Texture2D" uid="uid://d3x617sctoxng" path="res://Characters/D2.png" id="7_8rsxj"]
+[ext_resource type="Texture2D" uid="uid://dv6gk5mkjmem5" path="res://Characters/D1.png" id="8_vn8xn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_03146"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_urwsg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h653g")
+}],
+"loop": true,
+"name": &"A",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_jm4nh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_km38b")
+}],
+"loop": true,
+"name": &"B",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_dstr4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_emuvn")
+}],
+"loop": true,
+"name": &"C",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_8rsxj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vn8xn")
+}],
+"loop": true,
+"name": &"D",
+"speed": 2.0
+}]
+
+[node name="RandomCharacter" type="Node2D"]
+script = ExtResource("1_h653g")
+
+[node name="CharacterAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_03146")
+animation = &"B"
+frame_progress = 0.519921

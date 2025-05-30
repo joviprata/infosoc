@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cvc1tsvivwcvw" path="res://Scripts/draggable_object.gd" id="1_62gka"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62gka"]
-size = Vector2(145, 67)
+size = Vector2(148, 123)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m51b3"]
 size = Vector2(100, 100)
@@ -18,7 +18,7 @@ texture_filter = 1
 texture = ExtResource("1_23s78")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 25.5)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_62gka")
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="."]

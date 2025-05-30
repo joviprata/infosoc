@@ -11,6 +11,10 @@ extends Control
 func _ready() -> void:
 	AudioController.start_menu_song()
 	
+	for button in [play_button, options_button, exit_button]:
+		button.button_down.connect(ButtonSounds.play_button_down_sound)
+		button.pressed.connect(ButtonSounds.play_button_up_sound)
+	
 	play_button.button_down.connect(on_play_pressed)
 	options_button.button_down.connect(on_options_pressed)
 	exit_button.button_down.connect(on_exit_pressed)

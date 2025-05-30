@@ -1,16 +1,21 @@
-class_name DraggableObject
-extends RigidBody2D
+class_name ApprovedStamp
+extends CharacterBody2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
+@onready var stamp_up_sound = $StampUpSound
+@onready var stamp_down_sound = $StampDownSound
+
 var dragging := false
-signal on_dropped(body: RigidBody2D, pos: Vector2)
+var was_dragged := false
+
+signal on_dropped(body: CharacterBody2D, pos: Vector2)
 
 func _ready() -> void:
-	freeze = true
-	gravity_scale = 0
-
+	set_physics_process(true)
+	collision_shape_2d.disabled = false
+	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
@@ -19,30 +24,40 @@ func _input(event: InputEvent) -> void:
 			params.position = event.position
 			params.collide_with_areas = false
 			params.collide_with_bodies = true
-			params.collision_mask = collision_layer  # or set manually like: `params.collision_mask = 1`
 
-			var result = space_state.intersect_point(params, 1)
+			var result = space_state.intersect_point(params, 10)
 
-			# Only drag if this is the topmost object
 			if result.size() > 0 and result[0].get("collider") == self:
 				dragging = true
-				freeze = true
-
+				was_dragged = true
+				collision_shape_2d.disabled = true
 		elif not event.pressed and dragging:
 			dragging = false
-			freeze = false
+			was_dragged = false
+
+			# Temporarily disable movement
+			set_physics_process(false)
+			collision_shape_2d.disabled = false
+
+			# Play stamp down sound and move down by 5 pixels
+			stamp_down_sound.play()
+			position.y += 5
+
+			# Wait 0.5 seconds
+			await get_tree().create_timer(0.5).timeout
+
+			# Move up by 5 pixels and re-enable movement
+			position.y -= 5
+			stamp_up_sound.play()
+			set_physics_process(true)
+
 			if on_dropped.has_connections():
 				on_dropped.emit(self, event.position)
-
 
 
 
 func _physics_process(delta: float) -> void:
 	if dragging:
 		var mouse_pos = get_global_mouse_position()
-		
-		# Get top center of sprite, 10 pixels down
 		var top_center_offset = Vector2(0, -sprite_2d.texture.get_size().y / 2 + 10)
-		
-		# Position object so that top-center sits under the mouse
 		global_position = mouse_pos - top_center_offset
