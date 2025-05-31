@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bbl3378ad4hy4"]
+[gd_scene load_steps=21 format=3 uid="uid://bbl3378ad4hy4"]
 
 [ext_resource type="Texture2D" uid="uid://dc7rcg1w0u62" path="res://Assets/Background.png" id="1_i0l5x"]
 [ext_resource type="Script" uid="uid://dfsvwy1kbqb00" path="res://Scripts/02_game.gd" id="1_s865h"]
@@ -11,6 +11,14 @@
 [ext_resource type="Script" uid="uid://dblkhvbvasy4c" path="res://Scripts/02B_pause_button.gd" id="9_x3tfg"]
 [ext_resource type="PackedScene" uid="uid://d3i20ps4h8m1a" path="res://Scenes/02C_approved_stamp.tscn" id="10_jcksq"]
 [ext_resource type="PackedScene" uid="uid://cnhy8f40s1du1" path="res://Scenes/02C_denied_stamp.tscn" id="11_0r5sl"]
+[ext_resource type="Texture2D" uid="uid://bg4kdd25k2j1e" path="res://Assets/Page.png" id="12_cqgev"]
+[ext_resource type="Texture2D" uid="uid://c3qdqibb785vc" path="res://Assets/Mini Page.png" id="13_8be8h"]
+[ext_resource type="AudioStream" uid="uid://br3w78858ctn5" path="res://SFX/45. Paper Dragstart0.mp3" id="14_8be8h"]
+[ext_resource type="AudioStream" uid="uid://ukeedkgmj10i" path="res://SFX/46. Paper Dragstart1.mp3" id="15_4keas"]
+[ext_resource type="AudioStream" uid="uid://cvjgijo2m0i8j" path="res://SFX/47. Paper Dragstart2.mp3" id="16_2qr34"]
+[ext_resource type="AudioStream" uid="uid://bjv7p24xdpfbh" path="res://SFX/48. Paper Dragstop0.mp3" id="17_44efs"]
+[ext_resource type="AudioStream" uid="uid://djdc8hshuyysu" path="res://SFX/49. Paper Dragstop1.mp3" id="18_itmff"]
+[ext_resource type="AudioStream" uid="uid://b3i2tb3udk430" path="res://SFX/50. Paper Dragstop2.mp3" id="19_f4hpf"]
 
 [sub_resource type="GDScript" id="GDScript_w72w4"]
 
@@ -69,6 +77,62 @@ vertical_alignment = 1
 [node name="Page" parent="." instance=ExtResource("6_3ja3l")]
 position = Vector2(727, 223)
 
+[node name="MiniPageMask" type="Sprite2D" parent="."]
+clip_children = 1
+position = Vector2(246, 645)
+texture = ExtResource("12_cqgev")
+
+[node name="MiniPage" type="TextureRect" parent="MiniPageMask"]
+offset_left = -48.0
+offset_top = -102.0
+offset_right = 37.0
+offset_bottom = 12.0
+texture = ExtResource("13_8be8h")
+
+[node name="TestButtonReceberPagina" type="Button" parent="."]
+layout_mode = 0
+offset_left = 316.0
+offset_top = 474.0
+offset_right = 494.0
+offset_bottom = 497.0
+theme_override_font_sizes/font_size = 10
+text = "TESTE ANIMAÇÃO RECEBER PÁGINA"
+
+[node name="TestButtonEntregarPagina" type="Button" parent="."]
+layout_mode = 0
+offset_left = 312.0
+offset_top = 502.0
+offset_right = 499.0
+offset_bottom = 525.0
+theme_override_font_sizes/font_size = 10
+text = "TESTE ANIMAÇÃO ENTREGAR PÁGINA"
+
+[node name="MiniPageSound1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_8be8h")
+
+[node name="MiniPageSound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_4keas")
+
+[node name="MiniPageSound3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_2qr34")
+
+[node name="Page (depois mudar para cena Page)" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 579.0
+offset_top = -396.0
+offset_right = 875.0
+offset_bottom = -4.0
+texture = ExtResource("12_cqgev")
+
+[node name="PageSound1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_44efs")
+
+[node name="PageSound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_itmff")
+
+[node name="PageSound3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_f4hpf")
+
 [node name="ApprovedStamp" parent="." instance=ExtResource("10_jcksq")]
 position = Vector2(601, 455)
 
@@ -107,49 +171,124 @@ offset_right = 960.0
 offset_bottom = 540.0
 color = Color(0.223529, 0.192157, 0.294118, 0.588235)
 
-[node name="MenuOpcoes" type="VBoxContainer" parent="CanvasLayer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 405.0
-offset_top = 208.0
-offset_right = 589.0
-offset_bottom = 374.0
-scale = Vector2(0.997139, 0.990739)
+offset_top = -2.0
+offset_right = 960.0
+offset_bottom = 538.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
 theme_override_constants/separation = 6
 alignment = 1
-metadata/_edit_use_anchors_ = true
 
-[node name="voltar" type="Button" parent="CanvasLayer/Panel/MenuOpcoes"]
+[node name="voltar" type="Button" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_nl3wh")
 theme_override_font_sizes/font_size = 20
 text = "RESUME"
 
-[node name="voltar_menu" type="Button" parent="CanvasLayer/Panel/MenuOpcoes"]
+[node name="voltar_menu" type="Button" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_nl3wh")
 theme_override_font_sizes/font_size = 20
 text = "RETURN TO MENU"
 
-[node name="opcoes" type="Button" parent="CanvasLayer/Panel/MenuOpcoes"]
+[node name="opcoes" type="Button" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_nl3wh")
 theme_override_font_sizes/font_size = 20
 text = "OPTIONS"
 
-[node name="sair" type="Button" parent="CanvasLayer/Panel/MenuOpcoes"]
+[node name="sair" type="Button" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_nl3wh")
 theme_override_font_sizes/font_size = 20
 text = "EXIT"
 
+[node name="OptionsPanel" type="Panel" parent="CanvasLayer"]
+process_mode = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/OptionsPanel"]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 960.0
+offset_bottom = 540.0
+color = Color(0.223529, 0.192157, 0.294118, 0.588235)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/OptionsPanel"]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 960.0
+offset_bottom = 539.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/OptionsPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Toggle_Fullscreen" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_nl3wh")
+theme_override_font_sizes/font_size = 20
+toggle_mode = true
+text = "TOGGLE FULLSCREEN"
+
+[node name="Toggle_Volume" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_nl3wh")
+theme_override_font_sizes/font_size = 20
+toggle_mode = true
+text = "TOGGLE VOLUME"
+
+[node name="Return" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_nl3wh")
+theme_override_font_sizes/font_size = 20
+text = "RETURN"
+
 [connection signal="timeout" from="Level_Start_Countdown" to="Level_Timer" method="_on_level_start_countdown_timeout"]
 [connection signal="timeout" from="Level_Timer" to="." method="_on_level_timer_timeout"]
+[connection signal="pressed" from="TestButtonReceberPagina" to="." method="_on_test_button_receber_pagina_pressed"]
+[connection signal="pressed" from="TestButtonReceberPagina" to="RandomCharacter" method="_on_test_button_receber_pagina_pressed"]
+[connection signal="pressed" from="TestButtonEntregarPagina" to="." method="_on_test_button_entregar_pagina_pressed"]
+[connection signal="pressed" from="TestButtonEntregarPagina" to="RandomCharacter" method="_on_test_button_entregar_pagina_pressed"]
 [connection signal="on_dropped" from="ApprovedStamp" to="Page" method="_on_approved_stamp_on_dropped"]
 [connection signal="on_dropped" from="DeniedStamp" to="Page" method="_on_denied_stamp_on_dropped"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_menu_de_opcoes_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/PauseButton" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/MenuOpcoes/voltar" to="." method="_on_voltar_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/MenuOpcoes/voltar" to="CanvasLayer/PauseButton" method="_on_voltar_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/MenuOpcoes/voltar_menu" to="." method="_on_voltar_menu_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/MenuOpcoes/opcoes" to="." method="_on_opcoes_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/MenuOpcoes/sair" to="." method="_on_sair_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/voltar" to="." method="_on_voltar_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/voltar" to="CanvasLayer/PauseButton" method="_on_voltar_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/voltar_menu" to="." method="_on_voltar_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/opcoes" to="." method="_on_opcoes_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/sair" to="." method="_on_sair_pressed"]
+[connection signal="toggled" from="CanvasLayer/OptionsPanel/MarginContainer/HBoxContainer/VBoxContainer/Toggle_Fullscreen" to="." method="_on_toggle_fullscreen_toggled"]
+[connection signal="toggled" from="CanvasLayer/OptionsPanel/MarginContainer/HBoxContainer/VBoxContainer/Toggle_Volume" to="." method="_on_toggle_volume_toggled"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/MarginContainer/HBoxContainer/VBoxContainer/Return" to="." method="_on_return_pressed"]

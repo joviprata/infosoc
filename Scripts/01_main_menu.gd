@@ -5,7 +5,7 @@ extends Control
 @onready var exit_button = $MarginContainer/HBoxContainer/VBoxContainer/Exit_Button as Button
 
 @onready var game_scene = "res://Scenes/02_game.tscn"
-@onready var options_scene = "res://scenes/01_options.tscn"
+@onready var options_scene = "res://scenes/01A_menu_options.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
