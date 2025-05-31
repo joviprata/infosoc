@@ -64,16 +64,19 @@ func _on_return_pressed() -> void:
 
 
 func _on_toggle_volume_toggled(toggled_on: bool) -> void:
-	if toggled_on == true:
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
-	else:
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
+	var bus_index = AudioServer.get_bus_index("Master")
+	var is_muted = AudioServer.is_bus_mute(bus_index)
+	AudioServer.set_bus_mute(bus_index, !is_muted)
 
 func _on_toggle_fullscreen_toggled(toggled_on: bool) -> void:
-	if toggled_on == true:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
+	var current_mode = DisplayServer.window_get_mode()
+	var is_fullscreen = current_mode == DisplayServer.WINDOW_MODE_FULLSCREEN
+
+	if is_fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
 
 
 func _on_test_button_receber_pagina_pressed() -> void:

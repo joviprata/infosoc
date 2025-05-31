@@ -201,17 +201,17 @@ theme_override_fonts/font = ExtResource("7_nl3wh")
 theme_override_font_sizes/font_size = 20
 text = "RESUME"
 
-[node name="voltar_menu" type="Button" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("7_nl3wh")
-theme_override_font_sizes/font_size = 20
-text = "RETURN TO MENU"
-
 [node name="opcoes" type="Button" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_nl3wh")
 theme_override_font_sizes/font_size = 20
 text = "OPTIONS"
+
+[node name="voltar_menu" type="Button" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_nl3wh")
+theme_override_font_sizes/font_size = 20
+text = "RETURN TO MENU"
 
 [node name="sair" type="Button" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -286,8 +286,8 @@ text = "RETURN"
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/PauseButton" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/voltar" to="." method="_on_voltar_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/voltar" to="CanvasLayer/PauseButton" method="_on_voltar_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/voltar_menu" to="." method="_on_voltar_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/opcoes" to="." method="_on_opcoes_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/voltar_menu" to="." method="_on_voltar_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/sair" to="." method="_on_sair_pressed"]
 [connection signal="toggled" from="CanvasLayer/OptionsPanel/MarginContainer/HBoxContainer/VBoxContainer/Toggle_Fullscreen" to="." method="_on_toggle_fullscreen_toggled"]
 [connection signal="toggled" from="CanvasLayer/OptionsPanel/MarginContainer/HBoxContainer/VBoxContainer/Toggle_Volume" to="." method="_on_toggle_volume_toggled"]
