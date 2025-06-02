@@ -4,5 +4,10 @@
 
 [resource]
 script = ExtResource("1_ajx0j")
-textDescription = ""
+title = "Insert Title of Page"
+software_desc = "Software Description"
+software_context_desc = "Context of use and implications"
+management_desc = "How the software will hold up"
+workplace_desc = "Workplace ambient"
+sentences = Array[ExtResource("1_ajx0j")]([])
 metadata/_custom_type_script = "uid://bcinctri45r5d"
