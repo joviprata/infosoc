@@ -13,14 +13,15 @@ config_version=5
 config/name="Fiscal SBC"
 run/main_scene="uid://ctfpmsdyjexo3"
 config/features=PackedStringArray("4.4", "Mobile")
-boot_splash/image="uid://c73hvr5bql3s0"
 boot_splash/fullsize=false
+boot_splash/image="uid://c73hvr5bql3s0"
 config/icon="res://icon.svg"
 
 [autoload]
 
 AudioController="*res://Scenes/00_audio_controller.tscn"
 ButtonSounds="*res://Scenes/00_button_sounds.tscn"
+Global="*res://Scripts/global.gd"
 
 [display]
 

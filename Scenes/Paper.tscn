@@ -49,17 +49,19 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Title" type="RichTextLabel" parent="PageDescriptions"]
+layout_mode = 0
 offset_left = -132.0
 offset_top = -186.0
 offset_right = 130.0
 offset_bottom = -162.0
 theme = SubResource("Theme_mh1ba")
 bbcode_enabled = true
-text = "TITLE ™"
+text = "Insert Title of Page ™"
 scroll_following = true
 vertical_alignment = 1
 
 [node name="SoftwareDescription" type="RichTextLabel" parent="PageDescriptions"]
+layout_mode = 0
 offset_left = -125.0
 offset_top = -152.0
 offset_right = -6.0
@@ -67,37 +69,44 @@ offset_bottom = -53.0
 theme = ExtResource("4_aaour")
 theme_override_fonts/normal_font = ExtResource("3_ph2xu")
 bbcode_enabled = true
-text = "Descrição do Software:"
+text = "Descrição do Software:
+Software Description"
 fit_content = true
 scroll_active = false
 tab_size = 5
 
 [node name="SoftwareManagement" type="RichTextLabel" parent="PageDescriptions"]
+layout_mode = 0
 offset_left = -126.0
 offset_top = -35.0
 offset_right = -6.0
 offset_bottom = 67.0
 theme = ExtResource("4_aaour")
 bbcode_enabled = true
-text = "Como o software irá se manter:"
+text = "Como o software irá se manter:
+How the software will hold up"
 scroll_following = true
 
 [node name="ContextAndUsage" type="RichTextLabel" parent="PageDescriptions"]
+layout_mode = 0
 offset_left = 13.0
 offset_top = -152.0
 offset_right = 124.0
 offset_bottom = 67.0
 theme = ExtResource("4_aaour")
 bbcode_enabled = true
-text = "Contexto de uso e implicações:"
+text = "Contexto de uso e implicações:
+Context of use and implications"
 scroll_following = true
 
 [node name="WorkplaceDescription" type="RichTextLabel" parent="PageDescriptions"]
+layout_mode = 0
 offset_left = -125.0
 offset_top = 86.0
 offset_right = 125.0
 offset_bottom = 173.0
 theme = ExtResource("4_aaour")
 bbcode_enabled = true
-text = "Ambiente de trabalho:"
+text = "Ambiente de trabalho: 
+Workplace ambient"
 scroll_following = true
