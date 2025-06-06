@@ -10,7 +10,7 @@ extends Control
 @onready var return_button = $CanvasLayer/OptionsPanel/MarginContainer/HBoxContainer/VBoxContainer/Return as Button
 
 @onready var mini_page = $MiniPageMask/MiniPage as TextureRect
-@onready var page = $"Page (depois mudar para cena Page)" as TextureRect
+@onready var page = $Page
 
 @onready var mini_page_sound_1 = $MiniPageSound1
 @onready var mini_page_sound_2 = $MiniPageSound2
@@ -18,6 +18,9 @@ extends Control
 @onready var page_sound_1 = $PageSound1
 @onready var page_sound_2 = $PageSound2
 @onready var page_sound_3 = $PageSound3
+
+@onready var random_character: RandomCharacter = $RandomCharacter
+
 
 func _ready() -> void:
 	AudioController.start_inside_ambience_sound()
@@ -105,8 +108,8 @@ func _on_test_button_receber_pagina_pressed() -> void:
 	var random_sound_page = sounds_page[randi() % sounds_page.size()]
 	random_sound_page.play()
 
-	var start_position_page = Vector2(579, -396)
-	var end_position_page = Vector2(579, 27)
+	var start_position_page = Vector2(727, -200)
+	var end_position_page = Vector2(727, 223)
 	var duration_page = 0.4
 	
 	# Animate the mini page
@@ -121,8 +124,8 @@ func _on_test_button_entregar_pagina_pressed() -> void:
 	var random_sound_page = sounds_page[randi() % sounds_page.size()]
 	random_sound_page.play()
 
-	var start_position_page = Vector2(579, 27)
-	var end_position_page = Vector2(579, -396)
+	var start_position_page = Vector2(727, 223)
+	var end_position_page = Vector2(727, -200)
 	var duration_page = 0.4
 	
 	# Animate the mini page
@@ -145,3 +148,37 @@ func _on_test_button_entregar_pagina_pressed() -> void:
 	mini_page.position = start_position_mini_page
 	var tween_mini_page := create_tween()
 	tween_mini_page.tween_property(mini_page, "position", end_position_mini_page, duration_mini_page).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+
+
+func _on_denied_stamp_on_stamped(is_approved: bool) -> void:
+	# Play a random sound from the 3 options
+	var sounds_page = [mini_page_sound_1, mini_page_sound_2, mini_page_sound_3]
+	var random_sound_page = sounds_page[randi() % sounds_page.size()]
+	random_sound_page.play()
+
+	var start_position_page = Vector2(727, 223)
+	var end_position_page = Vector2(727, -200)
+	var duration_page = 0.4
+	
+	# Animate the mini page
+	page.position = start_position_page
+	var tween_page := create_tween()
+	tween_page.tween_property(page, "position", end_position_page, duration_page).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+
+	await get_tree().create_timer(0.5).timeout
+
+	# Play a random sound from the 3 options
+	var sounds_mini_page = [page_sound_1, page_sound_2, page_sound_3]
+	var random_sound_mini_page = sounds_mini_page[randi() % sounds_mini_page.size()]
+	random_sound_mini_page.play()
+	
+	var start_position_mini_page = Vector2(-48, -102)
+	var end_position_mini_page = Vector2(-48, -312)
+	var duration_mini_page = 0.3
+	
+	# Animate the mini page
+	mini_page.position = start_position_mini_page
+	var tween_mini_page := create_tween()
+	tween_mini_page.tween_property(mini_page, "position", end_position_mini_page, duration_mini_page).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+	
+	random_character.on_page_received()

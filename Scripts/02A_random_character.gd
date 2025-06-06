@@ -1,4 +1,4 @@
-extends Node2D
+class_name RandomCharacter extends Node2D
 
 @onready var character_animation := $CharacterAnimation
 var last_animation = ""
@@ -51,6 +51,9 @@ func _on_test_button_receber_pagina_pressed() -> void:
 
 
 func _on_test_button_entregar_pagina_pressed() -> void:
+	on_page_received()
+	
+func on_page_received() -> void:
 	# Wait for character to get back his paper
 	await get_tree().create_timer(0.5).timeout
 	
@@ -61,3 +64,5 @@ func _on_test_button_entregar_pagina_pressed() -> void:
 	var tween := create_tween()
 	var duration = 1.2
 	tween.tween_property(self, "position", Vector2(713, 232.5), duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+	

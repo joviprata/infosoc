@@ -75,7 +75,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Page" parent="." instance=ExtResource("6_3ja3l")]
-position = Vector2(727, 223)
+clip_children = 1
+position = Vector2(727, -200)
 
 [node name="MiniPageMask" type="Sprite2D" parent="."]
 clip_children = 1
@@ -117,6 +118,7 @@ stream = ExtResource("15_4keas")
 stream = ExtResource("16_2qr34")
 
 [node name="Page (depois mudar para cena Page)" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 579.0
 offset_top = -396.0
@@ -282,6 +284,7 @@ text = "RETURN"
 [connection signal="pressed" from="TestButtonEntregarPagina" to="RandomCharacter" method="_on_test_button_entregar_pagina_pressed"]
 [connection signal="on_dropped" from="ApprovedStamp" to="Page" method="_on_approved_stamp_on_dropped"]
 [connection signal="on_dropped" from="DeniedStamp" to="Page" method="_on_denied_stamp_on_dropped"]
+[connection signal="on_stamped" from="DeniedStamp" to="." method="_on_denied_stamp_on_stamped"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_menu_de_opcoes_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/PauseButton" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/voltar" to="." method="_on_voltar_pressed"]
