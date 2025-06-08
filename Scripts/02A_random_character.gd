@@ -27,7 +27,25 @@ func _ready():
 
 
 func _on_test_button_receber_pagina_pressed() -> void:
+	on_page_given()
 	
+
+func _on_test_button_entregar_pagina_pressed() -> void:
+	on_page_received()
+	
+func on_page_received() -> void:
+	# Wait for character to get back his paper
+	await get_tree().create_timer(0.5).timeout
+	
+	# Play walk-out sound
+	walk_out_sound.play()
+	await get_tree().create_timer(1).timeout
+	# Tween the character out of the frame
+	var tween := create_tween()
+	var duration = 1.2
+	tween.tween_property(self, "position", Vector2(713, 232.5), duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+func on_page_given() -> void:
 	# Play walk-in sound
 	walk_in_sound.play()
 	
@@ -48,21 +66,4 @@ func _on_test_button_receber_pagina_pressed() -> void:
 	var tween := create_tween()
 	var duration = 1.2
 	tween.tween_property(self, "position", Vector2(251, 232.5), duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-
-
-func _on_test_button_entregar_pagina_pressed() -> void:
-	on_page_received()
-	
-func on_page_received() -> void:
-	# Wait for character to get back his paper
-	await get_tree().create_timer(0.5).timeout
-	
-	# Play walk-out sound
-	walk_out_sound.play()
-	await get_tree().create_timer(1).timeout
-	# Tween the character out of the frame
-	var tween := create_tween()
-	var duration = 1.2
-	tween.tween_property(self, "position", Vector2(713, 232.5), duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-
 	

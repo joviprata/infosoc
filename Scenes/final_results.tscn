@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvu2cqxyi1cqx"]
+
+[ext_resource type="Script" uid="uid://bnleq6k52glyf" path="res://Scenes/round_results.gd" id="1_1r32g"]
+
+[node name="FinalResults" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1r32g")
+
+[node name="V_Results" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

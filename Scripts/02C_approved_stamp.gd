@@ -11,6 +11,7 @@ var was_dragged := false
 var can_interact := true
 
 signal on_dropped(body: CharacterBody2D, pos: Vector2)
+signal on_stamped(is_approved : bool)
 
 func _ready() -> void:
 	set_physics_process(true)
@@ -68,6 +69,8 @@ func _input(event: InputEvent) -> void:
 			await tween.finished
 			can_interact = true
 			set_physics_process(true)
+			if on_stamped.has_connections():
+				on_stamped.emit(true)
 
 func _physics_process(delta: float) -> void:
 	if dragging:

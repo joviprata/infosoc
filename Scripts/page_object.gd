@@ -12,6 +12,7 @@ class_name PageObject extends Node2D
 
 @onready var area_2d: Area2D = $Area2D
 
+var is_wrong : bool
 
 signal on_page_changed(pageRes : PageResource)
 
@@ -31,6 +32,8 @@ func set_page_resource(pageRes : PageResource) -> void:
 	
 	if on_page_changed.has_connections():
 		on_page_changed.emit(pageRes)
+	
+	is_wrong = pageRes.isWrong
 
 func _on_approved_stamp_on_dropped(body: CharacterBody2D, pos: Vector2) -> void:
 		var ap = Sprite2D.new()

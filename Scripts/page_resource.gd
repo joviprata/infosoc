@@ -15,5 +15,7 @@ class_name PageResource extends Resource
 @export_multiline var workplace_desc : String = "Workplace ambient"
 
 
-@export_group("")
+@export_group("If it's wrong")
 @export var isWrong : bool
+
+@export var wrongSentences : Array[PageSentence]

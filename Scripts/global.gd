@@ -15,3 +15,6 @@ var SBC_DIRECTIVES = {
 	"3.2" : "3.2 - ",
 	"3.3" : "3.3 - ",
 }
+
+# All the Current Round Pages
+var stampedPages : Array[PageObject]

@@ -1,5 +1,7 @@
 extends Control
 
+@export var roundPages : Array[PageResource]
+
 @onready var pause_button = $CanvasLayer/PauseButton as Button
 @onready var resume_button = $CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/voltar as Button
 @onready var return_menu_button = $CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/voltar_menu as Button
@@ -21,6 +23,12 @@ extends Control
 
 @onready var random_character: RandomCharacter = $RandomCharacter
 
+var wrongPages : Array[PageObject]
+
+var can_stamp : bool = false
+
+signal received_page()
+signal returned_page()
 
 func _ready() -> void:
 	AudioController.start_inside_ambience_sound()
@@ -28,7 +36,22 @@ func _ready() -> void:
 	for button in [pause_button, resume_button, return_menu_button, options_button, exit_menu_button, toggle_fullscreen, toggle_volume, return_button]:
 		button.button_down.connect(ButtonSounds.play_button_down_sound)
 		button.pressed.connect(ButtonSounds.play_button_up_sound)
+	
+	begin_round()
 
+func begin_round() -> void:
+	receive_page()
+	await get_tree().create_timer(.5).timeout
+	can_stamp = true
+
+func next_page() -> void:
+	can_stamp = false
+	return_page()
+	await get_tree().create_timer(5).timeout
+	begin_round()
+
+func end_game() -> void:
+	pass
 
 func _on_menu_de_opcoes_pressed() -> void:
 	# Abrir o layout de menu_de_opcoes (VBoxContainer)
@@ -83,7 +106,15 @@ func _on_toggle_fullscreen_toggled(toggled_on: bool) -> void:
 
 
 func _on_test_button_receber_pagina_pressed() -> void:
-		# Wait for character walk in
+	receive_page()
+
+
+func _on_test_button_entregar_pagina_pressed() -> void:
+	return_page()
+	
+# When you receive the page
+func receive_page() -> void:
+	# Wait for character walk in
 	await get_tree().create_timer(1.8).timeout
 	
 	# Play a random sound from the 3 options
@@ -116,41 +147,11 @@ func _on_test_button_receber_pagina_pressed() -> void:
 	page.position = start_position_page
 	var tween_page := create_tween()
 	tween_page.tween_property(page, "position", end_position_page, duration_page).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-
-
-func _on_test_button_entregar_pagina_pressed() -> void:
-	# Play a random sound from the 3 options
-	var sounds_page = [mini_page_sound_1, mini_page_sound_2, mini_page_sound_3]
-	var random_sound_page = sounds_page[randi() % sounds_page.size()]
-	random_sound_page.play()
-
-	var start_position_page = Vector2(727, 223)
-	var end_position_page = Vector2(727, -200)
-	var duration_page = 0.4
 	
-	# Animate the mini page
-	page.position = start_position_page
-	var tween_page := create_tween()
-	tween_page.tween_property(page, "position", end_position_page, duration_page).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-
-	await get_tree().create_timer(0.5).timeout
-
-	# Play a random sound from the 3 options
-	var sounds_mini_page = [page_sound_1, page_sound_2, page_sound_3]
-	var random_sound_mini_page = sounds_mini_page[randi() % sounds_mini_page.size()]
-	random_sound_mini_page.play()
+	random_character.on_page_given()
 	
-	var start_position_mini_page = Vector2(-48, -102)
-	var end_position_mini_page = Vector2(-48, -312)
-	var duration_mini_page = 0.3
-	
-	# Animate the mini page
-	mini_page.position = start_position_mini_page
-	var tween_mini_page := create_tween()
-	tween_mini_page.tween_property(mini_page, "position", end_position_mini_page, duration_mini_page).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
-
-
-func _on_denied_stamp_on_stamped(is_approved: bool) -> void:
+# Return the page to the Character
+func return_page() -> void:
 	# Play a random sound from the 3 options
 	var sounds_page = [mini_page_sound_1, mini_page_sound_2, mini_page_sound_3]
 	var random_sound_page = sounds_page[randi() % sounds_page.size()]
@@ -182,3 +183,60 @@ func _on_denied_stamp_on_stamped(is_approved: bool) -> void:
 	tween_mini_page.tween_property(mini_page, "position", end_position_mini_page, duration_mini_page).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
 	
 	random_character.on_page_received()
+
+
+# WHEN WE STAMP A PAGE
+func stamp(is_approved : bool) -> void:
+	
+	# You APPROVED a page that was wrong!
+	if page.page_resource.isWrong && is_approved == true:
+		wrongPages.append(page)
+	elif !page.page_resource.isWrong && is_approved == false:
+		wrongPages.append(page)
+		
+	# Play a random sound from the 3 options
+	var sounds_page = [mini_page_sound_1, mini_page_sound_2, mini_page_sound_3]
+	var random_sound_page = sounds_page[randi() % sounds_page.size()]
+	random_sound_page.play()
+
+	var start_position_page = Vector2(727, 223)
+	var end_position_page = Vector2(727, -200)
+	var duration_page = 0.4
+	
+	# Animate the mini page
+	page.position = start_position_page
+	var tween_page := create_tween()
+	tween_page.tween_property(page, "position", end_position_page, duration_page).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+
+	await get_tree().create_timer(0.5).timeout
+
+	# Play a random sound from the 3 options
+	var sounds_mini_page = [page_sound_1, page_sound_2, page_sound_3]
+	var random_sound_mini_page = sounds_mini_page[randi() % sounds_mini_page.size()]
+	random_sound_mini_page.play()
+	
+	var start_position_mini_page = Vector2(-48, -102)
+	var end_position_mini_page = Vector2(-48, -312)
+	var duration_mini_page = 0.3
+	
+	# Animate the mini page
+	mini_page.position = start_position_mini_page
+	var tween_mini_page := create_tween()
+	tween_mini_page.tween_property(mini_page, "position", end_position_mini_page, duration_mini_page).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+	
+	# Everytime we stamp a page, we go to the next_page and can't stamp until the next page appears
+	next_page()
+	
+
+func _on_denied_stamp_on_stamped(is_approved: bool) -> void:
+	if !can_stamp:
+		return
+		
+	stamp(is_approved)
+
+
+func _on_approved_stamp_on_stamped(is_approved: bool) -> void:
+	if !can_stamp:
+		return
+		
+	stamp(is_approved)

@@ -283,6 +283,7 @@ text = "RETURN"
 [connection signal="pressed" from="TestButtonEntregarPagina" to="." method="_on_test_button_entregar_pagina_pressed"]
 [connection signal="pressed" from="TestButtonEntregarPagina" to="RandomCharacter" method="_on_test_button_entregar_pagina_pressed"]
 [connection signal="on_dropped" from="ApprovedStamp" to="Page" method="_on_approved_stamp_on_dropped"]
+[connection signal="on_stamped" from="ApprovedStamp" to="." method="_on_approved_stamp_on_stamped"]
 [connection signal="on_dropped" from="DeniedStamp" to="Page" method="_on_denied_stamp_on_dropped"]
 [connection signal="on_stamped" from="DeniedStamp" to="." method="_on_denied_stamp_on_stamped"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_menu_de_opcoes_pressed"]
