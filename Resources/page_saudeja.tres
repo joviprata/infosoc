@@ -10,5 +10,6 @@ software_desc = "Aplicativo de agendamento de consultas médicas"
 software_context_desc = "será utilizado por pacientes para marcar consultas com profissionais de saúde de forma rápida, além de permitir o acesso ao histórico de atendimentos. Implica em maior organização para clínicas e redução de faltas."
 management_desc = "planos pagos para clínicos e consultores, com versão gratuita para pacientes."
 workplace_desc = "Desenvolvimento será feito remotamente, com reuniões semanais para alinhamento e divisão de tarefas. Uso de ferramentas como GItHub, Trello e Google Meet. Trabalho voluntário e voltado para fins educacionais."
-sentences = Array[ExtResource("2_gjj6h")]([])
+isWrong = false
+wrongSentences = Array[ExtResource("2_gjj6h")]([])
 metadata/_custom_type_script = "uid://bcinctri45r5d"

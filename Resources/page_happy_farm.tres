@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="PageResource" load_steps=2 format=3 uid="uid://cvfnmspr43fep"]
+[gd_resource type="Resource" script_class="PageResource" load_steps=3 format=3 uid="uid://cvfnmspr43fep"]
 
 [ext_resource type="Script" uid="uid://bcinctri45r5d" path="res://Scripts/page_resource.gd" id="1_cgpom"]
+[ext_resource type="Script" uid="uid://c7tjbmylrehgt" path="res://Scripts/page_sentence.gd" id="2_canh0"]
 
 [resource]
 script = ExtResource("1_cgpom")
@@ -10,4 +11,5 @@ software_context_desc = "Context of use and implications"
 management_desc = "How the software will hold up"
 workplace_desc = "Workplace ambient"
 isWrong = true
+wrongSentences = Array[ExtResource("2_canh0")]([])
 metadata/_custom_type_script = "uid://bcinctri45r5d"

@@ -12,7 +12,7 @@ extends Control
 @onready var return_button = $CanvasLayer/OptionsPanel/MarginContainer/HBoxContainer/VBoxContainer/Return as Button
 
 @onready var mini_page = $MiniPageMask/MiniPage as TextureRect
-@onready var page = $Page
+@onready var page = $Page as PageObject
 
 @onready var mini_page_sound_1 = $MiniPageSound1
 @onready var mini_page_sound_2 = $MiniPageSound2
@@ -144,8 +144,10 @@ func receive_page() -> void:
 	var end_position_page = Vector2(727, 223)
 	var duration_page = 0.4
 	
-	# Animate the mini page
+	# Animate the mini page and SETS the Page Resource
 	page.position = start_position_page
+	page.set_page_resource(roundPages.pick_random())
+	
 	var tween_page := create_tween()
 	tween_page.tween_property(page, "position", end_position_page, duration_page).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	

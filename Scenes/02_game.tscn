@@ -1,10 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://bbl3378ad4hy4"]
+[gd_scene load_steps=24 format=3 uid="uid://bbl3378ad4hy4"]
 
 [ext_resource type="Texture2D" uid="uid://dc7rcg1w0u62" path="res://Assets/Background.png" id="1_i0l5x"]
 [ext_resource type="Script" uid="uid://dfsvwy1kbqb00" path="res://Scripts/02_game.gd" id="1_s865h"]
+[ext_resource type="Script" uid="uid://bcinctri45r5d" path="res://Scripts/page_resource.gd" id="2_itmff"]
 [ext_resource type="Script" uid="uid://bh0de55rnipl8" path="res://Scripts/02D_level_timer.gd" id="2_jcksq"]
 [ext_resource type="Texture2D" uid="uid://dgn1ivupsoov" path="res://Assets/Foreground.png" id="2_s865h"]
 [ext_resource type="AudioStream" uid="uid://cohirh7bb1o4b" path="res://SFX/78. Time Up.mp3" id="3_0r5sl"]
+[ext_resource type="Resource" uid="uid://cvfnmspr43fep" path="res://Resources/page_happy_farm.tres" id="3_f4hpf"]
+[ext_resource type="Resource" uid="uid://du6j0vamhdq04" path="res://Resources/page_saudeja.tres" id="4_pe83e"]
 [ext_resource type="PackedScene" uid="uid://bcwkjth4bkslt" path="res://Scenes/Paper.tscn" id="6_3ja3l"]
 [ext_resource type="FontFile" uid="uid://dgrnxjw2gm3le" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="7_nl3wh"]
 [ext_resource type="PackedScene" uid="uid://c5x70y5m6x5ii" path="res://Scenes/02A_random_character.tscn" id="8_2ngsb"]
@@ -30,6 +33,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s865h")
+roundPages = Array[ExtResource("2_itmff")]([ExtResource("3_f4hpf"), ExtResource("4_pe83e")])
 
 [node name="Level_Start_Countdown" type="Timer" parent="."]
 wait_time = 3.0

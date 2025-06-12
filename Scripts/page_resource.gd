@@ -15,7 +15,11 @@ class_name PageResource extends Resource
 @export_multiline var workplace_desc : String = "Workplace ambient"
 
 
-@export_group("If it's wrong")
+@export_group("")
 @export var isWrong : bool
 
 @export var wrongSentences : Array[PageSentence]
+
+func get_all_texts() -> String:
+	return title + '\n' + software_desc + '\n' + software_context_desc + '\n' + management_desc + '\n' + workplace_desc
+	
