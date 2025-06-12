@@ -18,7 +18,7 @@ class_name PageResource extends Resource
 @export_group("")
 @export var isWrong : bool
 
-@export var wrongSentences : Array[PageSentence]
+@export var wrongSentences : Array[String]
 
 func get_all_texts() -> String:
 	return title + '\n' + software_desc + '\n' + software_context_desc + '\n' + management_desc + '\n' + workplace_desc

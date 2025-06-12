@@ -5,11 +5,11 @@
 
 [resource]
 script = ExtResource("1_cgpom")
-title = "Insert Title of Page"
-software_desc = "Software Description"
-software_context_desc = "Context of use and implications"
-management_desc = "How the software will hold up"
-workplace_desc = "Workplace ambient"
+title = "HAPPY FARM"
+software_desc = "Aplicativo de gerenciamento de fazendas."
+software_context_desc = "será utilizado por produtores rurais e gestores de propriedades agrícolas para organizar as atividades da fazenda. Implica aumento da produtividade e redução de perda por falta de planejamento."
+management_desc = "assinaturas mensais com planos escaláveis conforme tamanho da propriedade."
+workplace_desc = "Trabalho não remunerado. Escritório localizado em uma lavoura de café, com computadores e extensões de energia espalhadas entre as plantas. Programadores desobedientes são punidos por chibatadas."
 isWrong = true
 wrongSentences = Array[ExtResource("2_canh0")]([])
 metadata/_custom_type_script = "uid://bcinctri45r5d"
