@@ -12,6 +12,8 @@ class_name PageObject extends Node2D
 
 @onready var area_2d: Area2D = $Area2D
 
+@onready var stamp_mask = $StampMask as TextureRect
+
 var is_wrong : bool
 
 signal on_page_changed(pageRes : PageResource)
@@ -39,20 +41,29 @@ func _on_approved_stamp_on_dropped(body: CharacterBody2D, pos: Vector2) -> void:
 		var ap = Sprite2D.new()
 		ap.texture = approvedTexture
 		ap.z_index = 9999
-		add_child(ap)
+		stamp_mask.add_child(ap)
 		#ap.rotation = randf_range(0,2.5)
 		ap.global_position = pos + Vector2(0, 90)
+		
+		#clear stamp texture for next page
+		await get_tree().create_timer(3.0).timeout
+		ap.queue_free()
 
 
 func _on_denied_stamp_on_dropped(body: CharacterBody2D, pos: Vector2) -> void:
 		var ap = Sprite2D.new()
 		ap.texture = deniedTexture
 		ap.z_index = 9999
-		add_child(ap)
+		stamp_mask.add_child(ap)
 		#ap.rotation = randf_range(0,2.5)
 		ap.global_position = pos + Vector2(0, 79)
+		
+		#clear stamp texture for next page
+		await get_tree().create_timer(3.0).timeout
+		ap.queue_free()
 		
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		if page_resource != null:
 			set_page_resource(page_resource)
+		

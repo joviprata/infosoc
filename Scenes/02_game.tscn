@@ -95,6 +95,7 @@ offset_bottom = 12.0
 texture = ExtResource("13_8be8h")
 
 [node name="TestButtonReceberPagina" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 316.0
 offset_top = 474.0
@@ -104,6 +105,7 @@ theme_override_font_sizes/font_size = 10
 text = "TESTE ANIMAÇÃO RECEBER PÁGINA"
 
 [node name="TestButtonEntregarPagina" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 312.0
 offset_top = 502.0

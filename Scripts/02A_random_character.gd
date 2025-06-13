@@ -27,16 +27,13 @@ func _ready():
 
 
 func _on_test_button_receber_pagina_pressed() -> void:
-	on_page_given()
+	on_player_receives_page()
 	
 
 func _on_test_button_entregar_pagina_pressed() -> void:
-	on_page_received()
+	on_player_gives_page()
 	
-func on_page_received() -> void:
-	# Wait for character to get back his paper
-	await get_tree().create_timer(0.5).timeout
-	
+func on_player_gives_page() -> void:
 	# Play walk-out sound
 	walk_out_sound.play()
 	await get_tree().create_timer(1).timeout
@@ -44,8 +41,9 @@ func on_page_received() -> void:
 	var tween := create_tween()
 	var duration = 1.2
 	tween.tween_property(self, "position", Vector2(713, 232.5), duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	await tween.finished
 
-func on_page_given() -> void:
+func on_player_receives_page() -> void:
 	# Play walk-in sound
 	walk_in_sound.play()
 	
