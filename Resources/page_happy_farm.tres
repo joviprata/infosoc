@@ -11,10 +11,10 @@ management_desc = "assinaturas mensais com planos escaláveis conforme tamanho d
 workplace_desc = "Trabalho não remunerado. Escritório localizado em uma lavoura de café, com computadores e extensões de energia espalhadas entre as plantas. Programadores desobedientes são punidos por chibatadas."
 isWrong = true
 wrongSentences = Dictionary[String, String]({
-"management": "não remunerado são punidos com chibatadas",
+"management": "Wrongsentence",
 "soft_context": "Wrong sentence from context",
 "soft_desc": "Wrong sentence from description",
-"workplace": "Wrong sentence from workplace"
+"workplace": "não remunerado,são punidos por chibatadas."
 })
 sbc_violated_directives = Array[String](["1.1", "2.1"])
 metadata/_custom_type_script = "uid://bcinctri45r5d"

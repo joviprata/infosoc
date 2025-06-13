@@ -1,7 +1,6 @@
-[gd_resource type="Resource" script_class="PageResource" load_steps=3 format=3 uid="uid://du6j0vamhdq04"]
+[gd_resource type="Resource" script_class="PageResource" load_steps=2 format=3 uid="uid://du6j0vamhdq04"]
 
 [ext_resource type="Script" uid="uid://bcinctri45r5d" path="res://Scripts/page_resource.gd" id="1_t7l8t"]
-[ext_resource type="Script" uid="uid://c7tjbmylrehgt" path="res://Scripts/page_sentence.gd" id="2_gjj6h"]
 
 [resource]
 script = ExtResource("1_t7l8t")
@@ -11,5 +10,11 @@ software_context_desc = "será utilizado por pacientes para marcar consultas com
 management_desc = "planos pagos para clínicos e consultores, com versão gratuita para pacientes."
 workplace_desc = "Desenvolvimento será feito remotamente, com reuniões semanais para alinhamento e divisão de tarefas. Uso de ferramentas como GItHub, Trello e Google Meet. Trabalho voluntário e voltado para fins educacionais."
 isWrong = false
-wrongSentences = Array[ExtResource("2_gjj6h")]([])
+wrongSentences = Dictionary[String, String]({
+"management": "Wrong sentence from management",
+"soft_context": "Wrong sentence from context",
+"soft_desc": "Wrong sentence from description",
+"workplace": "Wrong sentence from workplace"
+})
+sbc_violated_directives = Array[String]([])
 metadata/_custom_type_script = "uid://bcinctri45r5d"

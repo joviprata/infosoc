@@ -38,20 +38,25 @@ func set_wrong_sentences() -> void:
 	var allText = page_resource.get_all_texts()
 
 	for textArea in page_resource.wrongSentences.keys():
-		var sentence = page_resource.wrongSentences[textArea]
-		if sentence not in allText:
-			continue
-			
-		var newText = '[color=red]' + sentence + '[/color]'
+		var val = page_resource.wrongSentences[textArea]
 		
-		match textArea:
-			'workplace':
-				workplace_description.text.replace(sentence,newText)
-			'soft_desc':
-				software_description.text.replace(sentence,newText)
-			'soft_context':
-				context_and_usage.text.replace(sentence,newText)
-			'management':
-				software_management.text.replace(sentence,newText)
+		var splited_sentence = val.split(',')
+		
+		for sentence in splited_sentence:
+			if sentence not in allText:
+				print(sentence + ' not in text')
+				continue
+				
+			var newText = '[color=red]' + sentence + '[/color]'
+			
+			match textArea:
+				'workplace':
+					workplace_description.text = workplace_description.text.replace(sentence,newText)
+				'soft_desc':
+					software_description.text = software_description.text.replace(sentence,newText)
+				'soft_context':
+					context_and_usage.text = context_and_usage.text.replace(sentence,newText)
+				'management':
+					software_management.text = software_management.text.replace(sentence,newText)
 			
 		

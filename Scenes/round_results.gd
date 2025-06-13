@@ -14,3 +14,4 @@ func _ready() -> void:
 		v_results.add_child(instantiatedPage)
 		
 		instantiatedPage.set_page_resource(page)
+		instantiatedPage.set_wrong_sentences()
