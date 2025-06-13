@@ -18,8 +18,20 @@ class_name PageResource extends Resource
 @export_group("")
 @export var isWrong : bool
 
-@export var wrongSentences : Array[String]
+# Each wrong sentence needs to be part of one of the areas below
+# The Keys are IMMUTABLE and should follow the default order setted
+@export var wrongSentences : Dictionary[String,String] = {
+	'workplace' : 'Wrong sentence from workplace',
+	'soft_desc' : 'Wrong sentence from description',
+	'soft_context' : 'Wrong sentence from context',
+	'management' : 'Wrong sentence from management'
+}
+
+# Put each key of the violated SBC on this DataStructure (Example: 1.1, 1.2, 1.3, 1.4
+@export var sbc_violated_directives : Array[String]
 
 func get_all_texts() -> String:
 	return title + '\n' + software_desc + '\n' + software_context_desc + '\n' + management_desc + '\n' + workplace_desc
-	
+
+
+			
