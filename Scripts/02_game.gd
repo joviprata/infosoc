@@ -2,6 +2,8 @@ extends Control
 
 @export var roundPages : Array[PageResource]
 
+@export var level_timer: Timer
+
 @onready var pause_button = $CanvasLayer/PauseButton as Button
 @onready var resume_button = $CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/voltar as Button
 @onready var return_menu_button = $CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/voltar_menu as Button
@@ -81,8 +83,7 @@ func _on_sair_pressed() -> void:
 
 
 func _on_level_timer_timeout() -> void:
-	await get_tree().create_timer(3.0).timeout
-	get_tree().change_scene_to_file("res://Scenes/01_main_menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/final_results.tscn")
 
 
 func _on_return_pressed() -> void:
@@ -206,7 +207,8 @@ func stamp(is_approved : bool) -> void:
 		wrongPages.append(page)
 	elif !page.page_resource.isWrong && is_approved == false:
 		wrongPages.append(page)
-		
+	
+	Global.add_stamped_page(page.page_resource, is_approved, page.stampPos)
 	# Everytime we stamp a page, we go to the next_page and can't stamp until the next page appears
 	
 	next_page()

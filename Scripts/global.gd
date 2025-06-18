@@ -49,5 +49,22 @@ integram à infraestrutura da sociedade",
 valores da SBC enquanto associada da IFIP'
 }
 
+class PageProperties:
+	var page_resource : PageResource
+	var stampType : bool
+	var stampPos : Vector2
+	
+	func _init(pageREs : PageResource, stampType : bool ,stampPos : Vector2) -> void:
+		self.page_resource = pageREs
+		self.stampType = stampType
+		self.stampPos = stampPos
+
+	
+
 # All the Current Round Pages
-var stampedPages : Array[PageObject]
+var stampedPages : Array[PageProperties]
+
+func add_stamped_page(pageRes:PageResource, stampType : bool ,stampPos : Vector2) -> void:
+	stampedPages.append(PageProperties.new(pageRes,stampType,stampPos))
+	
+	

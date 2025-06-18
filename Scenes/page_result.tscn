@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnqd020df1l8u"]
+[gd_scene load_steps=11 format=3 uid="uid://cnqd020df1l8u"]
 
 [ext_resource type="Texture2D" uid="uid://dfh60akl6xjop" path="res://Assets/TEMPLATE ARTE SOZINHA.png" id="1_4qyb6"]
 [ext_resource type="Script" uid="uid://bug2flxsxyrs" path="res://Scenes/page_result.gd" id="2_55ptn"]
 [ext_resource type="FontFile" uid="uid://dgrnxjw2gm3le" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="2_vmjfw"]
 [ext_resource type="Theme" uid="uid://dtfrhnr3tljyr" path="res://Assets/Fonts/PageDescription.tres" id="3_55ptn"]
+[ext_resource type="Texture2D" uid="uid://bg4kdd25k2j1e" path="res://Assets/Page.png" id="5_4ct4g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmjfw"]
 bg_color = Color(1, 0.103463, 0.827571, 1)
@@ -135,3 +136,10 @@ bbcode_enabled = true
 text = "Ambiente de trabalho: 
 Workplace ambient"
 scroll_following = true
+
+[node name="StampMask" type="TextureRect" parent="."]
+clip_children = 1
+layout_mode = 0
+offset_right = 289.0
+offset_bottom = 382.0
+texture = ExtResource("5_4ct4g")

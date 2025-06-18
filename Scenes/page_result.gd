@@ -11,6 +11,9 @@ class_name PageResult extends Control
 @onready var correct_or_not_label: RichTextLabel = $CorrectOrNotLabel
 @onready var violated_directives_label: RichTextLabel = $ViolatedDirectivesLabel
 
+@onready var stamp_mask: TextureRect = $StampMask
+
+
 
 func set_page_resource(pageRes : PageResource) -> void:
 	page_resource = pageRes
@@ -30,8 +33,10 @@ func set_page_resource(pageRes : PageResource) -> void:
 		for directive in pageRes.sbc_violated_directives:
 			var text = "{0} - {1}\n".format({'0':directive,'1':Global.SBC_DIRECTIVES[directive]})
 			violated_directives_label.text += text
+		
 	else:
 		violated_directives_label.text = "[color=green]Este projeto segue todas as diretrizes[/color]"
+		
 
 	
 func set_wrong_sentences() -> void:
@@ -59,4 +64,3 @@ func set_wrong_sentences() -> void:
 				'management':
 					software_management.text = software_management.text.replace(sentence,newText)
 			
-		

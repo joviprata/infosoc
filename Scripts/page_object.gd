@@ -21,6 +21,8 @@ signal on_page_changed(pageRes : PageResource)
 var approvedTexture = load("res://Assets/APPROVED.png")
 var deniedTexture = load("res://Assets/DENIED.png")
 
+var stampPos : Vector2
+
 func set_page_resource(pageRes : PageResource) -> void:
 	page_resource = pageRes
 	
@@ -40,11 +42,13 @@ func set_page_resource(pageRes : PageResource) -> void:
 func _on_approved_stamp_on_dropped(body: CharacterBody2D, pos: Vector2) -> void:
 		var ap = Sprite2D.new()
 		ap.texture = approvedTexture
-		ap.z_index = 9999
+		
 		stamp_mask.add_child(ap)
+		#ap.z_index = 100
 		#ap.rotation = randf_range(0,2.5)
 		ap.global_position = pos + Vector2(0, 90)
 		
+		stampPos = ap.global_position - Vector2(600, 90)
 		#clear stamp texture for next page
 		await get_tree().create_timer(3.0).timeout
 		ap.queue_free()
@@ -53,11 +57,13 @@ func _on_approved_stamp_on_dropped(body: CharacterBody2D, pos: Vector2) -> void:
 func _on_denied_stamp_on_dropped(body: CharacterBody2D, pos: Vector2) -> void:
 		var ap = Sprite2D.new()
 		ap.texture = deniedTexture
-		ap.z_index = 9999
+		
 		stamp_mask.add_child(ap)
+		#ap.z_index = 100
 		#ap.rotation = randf_range(0,2.5)
 		ap.global_position = pos + Vector2(0, 79)
 		
+		stampPos = ap.global_position - Vector2(600, 79)
 		#clear stamp texture for next page
 		await get_tree().create_timer(3.0).timeout
 		ap.queue_free()

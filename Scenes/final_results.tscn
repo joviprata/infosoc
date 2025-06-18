@@ -1,9 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvu2cqxyi1cqx"]
+[gd_scene load_steps=2 format=3 uid="uid://bvu2cqxyi1cqx"]
 
 [ext_resource type="Script" uid="uid://bnleq6k52glyf" path="res://Scenes/round_results.gd" id="1_1r32g"]
-[ext_resource type="Script" uid="uid://bcinctri45r5d" path="res://Scripts/page_resource.gd" id="2_qb7fm"]
-[ext_resource type="Resource" uid="uid://cvfnmspr43fep" path="res://Resources/page_happy_farm.tres" id="3_cp6rc"]
-[ext_resource type="Resource" uid="uid://du6j0vamhdq04" path="res://Resources/page_saudeja.tres" id="4_mvqsf"]
 
 [node name="FinalResults" type="Control"]
 layout_mode = 3
@@ -13,7 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1r32g")
-finishedPages = Array[ExtResource("2_qb7fm")]([ExtResource("3_cp6rc"), ExtResource("4_mvqsf")])
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
@@ -27,3 +23,20 @@ horizontal_scroll_mode = 0
 
 [node name="V_Results" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
+
+[node name="NextRound" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -122.0
+offset_top = -53.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Next Round"
+
+[connection signal="pressed" from="NextRound" to="." method="_on_next_round_pressed"]

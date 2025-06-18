@@ -14,7 +14,6 @@ class_name PageResource extends Resource
 @export_multiline var management_desc : String = "How the software will hold up"
 @export_multiline var workplace_desc : String = "Workplace ambient"
 
-
 @export_group("")
 @export var isWrong : bool
 
@@ -29,6 +28,8 @@ class_name PageResource extends Resource
 
 # Put each key of the violated SBC on this DataStructure (Example: 1.1, 1.2, 1.3, 1.4
 @export var sbc_violated_directives : Array[String]
+
+var stampPos : Vector2
 
 func get_all_texts() -> String:
 	return title + '\n' + software_desc + '\n' + software_context_desc + '\n' + management_desc + '\n' + workplace_desc
