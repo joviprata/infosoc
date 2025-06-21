@@ -1,9 +1,11 @@
 @tool
 class_name SBC_Directive_Menu extends Control
 
-const SBC_DIRECTIVE = preload("res://Scenes/ui/sbc_directive.tscn")
+@export var vertical_box: VBoxContainer
 
-var currentDirectives : Dictionary[StringName,String]
+var SBC_DIRECTIVE = load("res://Scenes/ui/sbc_directive.tscn")
+
+var currentDirectives : Dictionary[StringName,String] = {}
 
 @export_tool_button("Set SBC Directives", 'Callable') var set_dirs = set_directives
 func set_directives() -> void:
@@ -14,5 +16,7 @@ func set_directives() -> void:
 		var text = "<color=blue>{num}</color> - {description}".format({'num':directive, 'description':desc})
 		
 		direct.text_area.text = text
+		direct.name = "SBC_DIRECTIVE-" + directive
+		vertical_box.add_child(direct)
 		
 	

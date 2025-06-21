@@ -7,13 +7,14 @@
 
 [sub_resource type="Theme" id="Theme_indeb"]
 
-[node name="SBCDirectives" type="Control"]
+[node name="SBCDirectives" type="Control" node_paths=PackedStringArray("vertical_box")]
 layout_mode = 3
 anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rnq5m")
+vertical_box = NodePath("ScrollContainer/VBoxContainer")
 
 [node name="bg" type="TextureRect" parent="."]
 self_modulate = Color(0.152941, 0.403922, 0.407843, 1)

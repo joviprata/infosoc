@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="PageResource" load_steps=2 format=3 uid="uid://uh4x4n4ts8ux"]
+
+[ext_resource type="Script" uid="uid://bcinctri45r5d" path="res://Scripts/page_resource.gd" id="1_wswrp"]
+
+[resource]
+script = ExtResource("1_wswrp")
+title = "VAN ADAPT"
+software_desc = "App que conecta passageiros cadeirantes com motoristas que possuem veículos adaptados."
+software_context_desc = "O serviço ajuda diretamente na mobilidade de pessoas com deficiência física. O custo das viagens é significativamente mais alto que o de um transporte regular, devido à cobrança de uma \"taxa de adaptação veicular\"."
+management_desc = "Modelo de negócios baseado em tarifas por viagem, com lucro sobre cada corrida."
+workplace_desc = "Motoristas autônomos, sem vínculo empregatício. Equipe de desenvolvimento trabalha sob condições adequadas."
+isWrong = false
+wrongSentences = Dictionary[String, String]({
+"management": "Wrong sentence from management",
+"soft_context": "Wrong sentence from context",
+"soft_desc": "Wrong sentence from description",
+"workplace": "Wrong sentence from workplace"
+})
+sbc_violated_directives = Array[String]([])
+metadata/_custom_type_script = "uid://bcinctri45r5d"

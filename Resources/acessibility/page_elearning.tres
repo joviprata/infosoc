@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="PageResource" load_steps=2 format=3 uid="uid://b73760nmkybov"]
+
+[ext_resource type="Script" uid="uid://bcinctri45r5d" path="res://Scripts/page_resource.gd" id="1_0mn0o"]
+
+[resource]
+script = ExtResource("1_0mn0o")
+title = "E-LEARNING"
+software_desc = "Ambiente Virtual de Aprendizagem (AVA) com videoaulas, quizzes e fóruns para alunos da rede pública."
+software_context_desc = "O sistema vai beneficiar milhares de estudantes com acesso remoto a conteúdos educacionais."
+management_desc = "Verba pública com manutenção anual, porém sem previsão de melhorias de acessibilidade na primeira versão."
+workplace_desc = "Desenvolvedores contratados com boas condições de trabalho, mas sem equipe de acessibilidade.
+"
+isWrong = true
+wrongSentences = Dictionary[String, String]({
+"management": "Wrong sentence from management",
+"soft_context": "Wrong sentence from context",
+"soft_desc": "Wrong sentence from description",
+"workplace": "sem equipe de acessibilidade"
+})
+sbc_violated_directives = Array[String](["1.3", "2.2", "3.3", "4.1"])
+metadata/_custom_type_script = "uid://bcinctri45r5d"
