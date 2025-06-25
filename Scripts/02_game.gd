@@ -4,7 +4,7 @@ extends Control
 
 @export var level_timer: Timer
 
-@onready var pause_button = $CanvasLayer/PauseButton as Button
+@onready var pause_button = $CanvasLayer/PauseButton as TextureButton
 @onready var resume_button = $CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/voltar as Button
 @onready var return_menu_button = $CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/voltar_menu as Button
 @onready var options_button = $CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/opcoes as Button
@@ -12,6 +12,8 @@ extends Control
 @onready var toggle_fullscreen = $CanvasLayer/OptionsPanel/MarginContainer/HBoxContainer/VBoxContainer/Toggle_Fullscreen as Button
 @onready var toggle_volume = $CanvasLayer/OptionsPanel/MarginContainer/HBoxContainer/VBoxContainer/Toggle_Volume as Button
 @onready var return_button = $CanvasLayer/OptionsPanel/MarginContainer/HBoxContainer/VBoxContainer/Return as Button
+@onready var sbc_handbook_button = $CanvasLayer/SBCHandbookButton as TextureButton
+@onready var sbc_handbook = $SBC_Handbook
 
 @onready var mini_page = $MiniPageMask/MiniPage as TextureRect
 @onready var page = $Page as PageObject
@@ -35,7 +37,7 @@ signal returned_page(pageRes : PageResource)
 func _ready() -> void:
 	AudioController.start_inside_ambience_sound()
 	
-	for button in [pause_button, resume_button, return_menu_button, options_button, exit_menu_button, toggle_fullscreen, toggle_volume, return_button]:
+	for button in [pause_button, resume_button, return_menu_button, options_button, exit_menu_button, toggle_fullscreen, toggle_volume, return_button, sbc_handbook_button]:
 		button.button_down.connect(ButtonSounds.play_button_down_sound)
 		button.pressed.connect(ButtonSounds.play_button_up_sound)
 	
@@ -56,7 +58,7 @@ func next_page() -> void:
 func end_game() -> void:
 	pass
 
-func _on_menu_de_opcoes_pressed() -> void:
+func _on_pause_button_pressed() -> void:
 	# Abrir o layout de menu_de_opcoes (VBoxContainer)
 	$CanvasLayer/Panel.visible = true
 
@@ -226,3 +228,19 @@ func _on_approved_stamp_on_stamped(is_approved: bool) -> void:
 		return
 		
 	stamp(is_approved)
+
+
+func toggle_handbook_visibility(toggled_on: bool) -> void:
+	var target_position := Vector2(872, 255) if toggled_on else Vector2(1071, 255)
+
+	# Play a random page slide sound
+	var sounds_page = [page_sound_1, page_sound_2, page_sound_3]
+	var random_sound = sounds_page[randi() % sounds_page.size()]
+	random_sound.play()
+
+	# Animate the slide
+	var tween := create_tween()
+	tween.tween_property(sbc_handbook, "position", target_position, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	
+func _on_sbc_handbook_button_toggled(toggled_on: bool) -> void:
+	toggle_handbook_visibility(toggled_on)

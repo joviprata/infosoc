@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bbl3378ad4hy4"]
+[gd_scene load_steps=31 format=3 uid="uid://bbl3378ad4hy4"]
 
 [ext_resource type="Texture2D" uid="uid://dc7rcg1w0u62" path="res://Assets/Background.png" id="1_i0l5x"]
 [ext_resource type="Script" uid="uid://dfsvwy1kbqb00" path="res://Scripts/02_game.gd" id="1_s865h"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bcwkjth4bkslt" path="res://Scenes/Paper.tscn" id="6_3ja3l"]
 [ext_resource type="FontFile" uid="uid://dgrnxjw2gm3le" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="7_nl3wh"]
 [ext_resource type="PackedScene" uid="uid://c5x70y5m6x5ii" path="res://Scenes/02A_random_character.tscn" id="8_2ngsb"]
-[ext_resource type="Script" uid="uid://dblkhvbvasy4c" path="res://Scripts/02B_pause_button.gd" id="9_x3tfg"]
+[ext_resource type="Script" uid="uid://byynlxdirs4g0" path="res://Scripts/02B_pause_button.gd" id="9_x3tfg"]
 [ext_resource type="PackedScene" uid="uid://d3i20ps4h8m1a" path="res://Scenes/02C_approved_stamp.tscn" id="10_jcksq"]
 [ext_resource type="PackedScene" uid="uid://cnhy8f40s1du1" path="res://Scenes/02C_denied_stamp.tscn" id="11_0r5sl"]
 [ext_resource type="Texture2D" uid="uid://bg4kdd25k2j1e" path="res://Assets/Page.png" id="12_cqgev"]
@@ -23,8 +23,26 @@
 [ext_resource type="AudioStream" uid="uid://bjv7p24xdpfbh" path="res://SFX/48. Paper Dragstop0.mp3" id="17_44efs"]
 [ext_resource type="AudioStream" uid="uid://djdc8hshuyysu" path="res://SFX/49. Paper Dragstop1.mp3" id="18_itmff"]
 [ext_resource type="AudioStream" uid="uid://b3i2tb3udk430" path="res://SFX/50. Paper Dragstop2.mp3" id="19_f4hpf"]
+[ext_resource type="Texture2D" uid="uid://kkou3yham0ch" path="res://Assets/Button Icons.png" id="23_84inw"]
+[ext_resource type="PackedScene" uid="uid://canuqqq77h5dx" path="res://Scenes/02E_sbc_handbook.tscn" id="25_84inw"]
 
 [sub_resource type="GDScript" id="GDScript_w72w4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11cyj"]
+atlas = ExtResource("23_84inw")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gm1t"]
+atlas = ExtResource("23_84inw")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pe83e"]
+atlas = ExtResource("23_84inw")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84inw"]
+atlas = ExtResource("23_84inw")
+region = Rect2(96, 96, 48, 48)
 
 [node name="Game" type="Control" node_paths=PackedStringArray("level_timer")]
 layout_mode = 3
@@ -43,7 +61,7 @@ one_shot = true
 autostart = true
 
 [node name="Level_Timer" type="Timer" parent="."]
-wait_time = 39.0
+wait_time = 60.0
 one_shot = true
 script = ExtResource("2_jcksq")
 
@@ -149,26 +167,29 @@ position = Vector2(601, 455)
 [node name="DeniedStamp" parent="." instance=ExtResource("11_0r5sl")]
 position = Vector2(839, 466)
 
+[node name="SBC_Handbook" parent="." instance=ExtResource("25_84inw")]
+position = Vector2(1062, 250)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = SubResource("GDScript_w72w4")
 
-[node name="PauseButton" type="Button" parent="CanvasLayer"]
-offset_left = 30.0
-offset_top = 29.0
-offset_right = 97.0
-offset_bottom = 103.0
-scale = Vector2(0.564103, 0.470588)
-theme_override_fonts/font = ExtResource("7_nl3wh")
-theme_override_font_sizes/font_size = 20
-text = "||
-"
+[node name="PauseButton" type="TextureButton" parent="CanvasLayer"]
+offset_left = 25.0
+offset_top = 28.0
+offset_right = 73.0
+offset_bottom = 76.0
+texture_normal = SubResource("AtlasTexture_11cyj")
+texture_pressed = SubResource("AtlasTexture_1gm1t")
 script = ExtResource("9_x3tfg")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PauseButton"]
-layout_mode = 0
-offset_right = 67.0
-offset_bottom = 74.0
-stretch_mode = 5
+[node name="SBCHandbookButton" type="TextureButton" parent="CanvasLayer"]
+offset_left = 910.0
+offset_top = 28.0
+offset_right = 958.0
+offset_bottom = 76.0
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_pe83e")
+texture_pressed = SubResource("AtlasTexture_84inw")
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 process_mode = 2
@@ -294,8 +315,9 @@ text = "RETURN"
 [connection signal="on_stamped" from="ApprovedStamp" to="." method="_on_approved_stamp_on_stamped"]
 [connection signal="on_dropped" from="DeniedStamp" to="Page" method="_on_denied_stamp_on_dropped"]
 [connection signal="on_stamped" from="DeniedStamp" to="." method="_on_denied_stamp_on_stamped"]
-[connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_menu_de_opcoes_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/PauseButton" method="_on_pressed"]
+[connection signal="toggled" from="CanvasLayer/SBCHandbookButton" to="." method="_on_sbc_handbook_button_toggled"]
 [connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/voltar" to="." method="_on_voltar_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/voltar" to="CanvasLayer/PauseButton" method="_on_voltar_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer/opcoes" to="." method="_on_opcoes_pressed"]
