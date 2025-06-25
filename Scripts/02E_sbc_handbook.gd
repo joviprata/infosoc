@@ -2,7 +2,7 @@
 class_name SBCHandbook
 extends Node2D
 
-const PAGE_COUNT := 4
+const PAGE_COUNT := 8
 const PAGE_PATH_TEMPLATE := "res://Assets/SBC Handbook Pages/SBC_Handbook_Page_%d.png"
 
 @onready var page_texture: Sprite2D = $Page_Texture
