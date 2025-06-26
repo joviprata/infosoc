@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://canuqqq77h5dx"]
+[gd_scene load_steps=8 format=3 uid="uid://canuqqq77h5dx"]
 
 [ext_resource type="Script" uid="uid://doyx8vpkcei6n" path="res://Scripts/02E_sbc_handbook.gd" id="1_wa2bn"]
-[ext_resource type="Texture2D" uid="uid://y5lllkrgsyfc" path="res://Assets/SBC Handbook Pages/SBC_Handbook_Page_2.png" id="2_5ib3n"]
 [ext_resource type="Texture2D" uid="uid://cj71tgcggac6s" path="res://Assets/SBC Handbook Pages/SBC_Handbook_Page_1.png" id="2_ujow6"]
 [ext_resource type="Texture2D" uid="uid://bo2gutc8j3g" path="res://Assets/Page Flip Button Icons.png" id="3_5ib3n"]
+[ext_resource type="AudioStream" uid="uid://d4cgjynj58l31" path="res://SFX/52. Paper Turnpage0.mp3" id="5_5ncnx"]
+[ext_resource type="AudioStream" uid="uid://duln2tyh01k5l" path="res://SFX/53. Paper Turnpage1.mp3" id="6_m1mts"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lbfln"]
 atlas = ExtResource("3_5ib3n")
@@ -17,34 +18,42 @@ region = Rect2(0, 0, 14, 0)
 script = ExtResource("1_wa2bn")
 
 [node name="BackgroundPage" type="TextureRect" parent="."]
-offset_left = -93.0
-offset_top = -109.0
-offset_right = 81.0
-offset_bottom = 122.0
-texture = ExtResource("2_5ib3n")
+offset_left = -92.0
+offset_top = -111.0
+offset_right = 82.0
+offset_bottom = 120.0
+texture = ExtResource("2_ujow6")
 
 [node name="Page_Texture" type="Sprite2D" parent="."]
 texture = ExtResource("2_ujow6")
 
 [node name="NextPageButton" type="Button" parent="."]
-offset_left = 55.0
+offset_left = 58.0
 offset_top = 78.0
-offset_right = 77.0
+offset_right = 80.0
 offset_bottom = 106.0
 focus_mode = 0
 icon = SubResource("AtlasTexture_lbfln")
 flat = true
 
 [node name="PreviousPageButton" type="Button" parent="."]
-visible = false
-offset_left = 33.0
+offset_left = 36.0
 offset_top = 78.0
-offset_right = 55.0
+offset_right = 58.0
 offset_bottom = 106.0
 focus_mode = 0
 disabled = true
 icon = SubResource("AtlasTexture_5ncnx")
 flat = true
+
+[node name="TurnPageSound1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_5ncnx")
+
+[node name="TurnPageSound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_m1mts")
+
+[node name="TurnPageSound3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_m1mts")
 
 [connection signal="pressed" from="NextPageButton" to="." method="_on_next_page_button_pressed"]
 [connection signal="pressed" from="PreviousPageButton" to="." method="_on_previous_page_button_pressed"]
