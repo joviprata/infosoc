@@ -4,5 +4,17 @@
 
 [resource]
 script = ExtResource("1_ajx0j")
-textDescription = ""
+title = "Insert Title of Page"
+software_desc = "Software Description"
+software_context_desc = "Context of use and implications"
+management_desc = "How the software will hold up"
+workplace_desc = "Workplace ambient"
+isWrong = false
+wrongSentences = Dictionary[String, String]({
+"management": "Wrong sentence from management",
+"soft_context": "Wrong sentence from context",
+"soft_desc": "Wrong sentence from description",
+"workplace": "Wrong sentence from workplace"
+})
+sbc_violated_directives = Array[String]([])
 metadata/_custom_type_script = "uid://bcinctri45r5d"

@@ -1,26 +1,38 @@
 #exatamente a mesma coisa que 02C_approved_stamp.gd, só muda o class_name
 
 
-
 class_name DeniedStamp
 extends CharacterBody2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-
 @onready var stamp_up_sound = $StampUpSound
 @onready var stamp_down_sound = $StampDownSound
+@onready var stamp_dragstart_sound = $StampDragstartSound
+@onready var stamp_drop_sound = $StampDropSound
+
+@onready var approved_stamp = $"../ApprovedStamp"
+@onready var game_scene = $".."
 
 var dragging := false
 var was_dragged := false
+var can_interact := true
 
 signal on_dropped(body: CharacterBody2D, pos: Vector2)
+signal on_stamped(is_approved : bool)
+
+#VARIABLE FOR STAMP PAGE BOUNDARIES:
+var initial_position: Vector2
 
 func _ready() -> void:
 	set_physics_process(true)
 	collision_shape_2d.disabled = false
-	
+	initial_position = position
+
 func _input(event: InputEvent) -> void:
+	if not can_interact:
+		return
+
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			var space_state = get_world_2d().direct_space_state
@@ -32,33 +44,54 @@ func _input(event: InputEvent) -> void:
 			var result = space_state.intersect_point(params, 10)
 
 			if result.size() > 0 and result[0].get("collider") == self:
+				stamp_dragstart_sound.play()
 				dragging = true
 				was_dragged = true
 				collision_shape_2d.disabled = true
+
 		elif not event.pressed and dragging:
 			dragging = false
 			was_dragged = false
-
-			# Temporarily disable movement
-			set_physics_process(false)
 			collision_shape_2d.disabled = false
+			set_physics_process(false)
+			can_interact = false
 
-			# Play stamp down sound and move down by 5 pixels
-			stamp_down_sound.play()
-			position.y += 5
+			var drop_pos = event.position
+			var stamp_area = Rect2(Vector2(579, -30), Vector2(296, 360))
 
-			# Wait 0.5 seconds
-			await get_tree().create_timer(0.5).timeout
+			if stamp_area.has_point(drop_pos) and game_scene.can_stamp and approved_stamp.can_interact:
+				# Stamping behavior
+				stamp_down_sound.play()
+				position.y += 5
+				await get_tree().create_timer(0.5).timeout
+				position.y -= 5
+				stamp_up_sound.play()
 
-			# Move up by 5 pixels and re-enable movement
-			position.y -= 5
-			stamp_up_sound.play()
-			set_physics_process(true)
+				if on_dropped.has_connections():
+					on_dropped.emit(self, drop_pos)
 
-			if on_dropped.has_connections():
-				on_dropped.emit(self, event.position)
+				var tween := create_tween()
+				tween.tween_property(self, "position", initial_position, 0.8)\
+					.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+				await tween.finished
 
+				can_interact = true
+				set_physics_process(true)
 
+				if on_stamped.has_connections():
+					on_stamped.emit(false)
+			else:
+				stamp_drop_sound.play()
+				
+				# Return to original position
+				var tween := create_tween()
+				tween.tween_property(self, "position", initial_position, 0.8)\
+					.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+				await tween.finished
+
+				can_interact = true
+				set_physics_process(true)
+			
 
 func _physics_process(delta: float) -> void:
 	if dragging:

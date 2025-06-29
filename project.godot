@@ -21,13 +21,12 @@ config/icon="res://icon.svg"
 
 AudioController="*res://Scenes/00_audio_controller.tscn"
 ButtonSounds="*res://Scenes/00_button_sounds.tscn"
+Global="*res://Scripts/global.gd"
 
 [display]
 
 window/size/viewport_width=960
 window/size/viewport_height=540
-window/size/mode=3
-window/size/borderless=true
 window/stretch/mode="canvas_items"
 
 [input]

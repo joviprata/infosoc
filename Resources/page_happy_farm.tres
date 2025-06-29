@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="PageResource" load_steps=2 format=3 uid="uid://cvfnmspr43fep"]
+
+[ext_resource type="Script" uid="uid://bcinctri45r5d" path="res://Scripts/page_resource.gd" id="1_cgpom"]
+
+[resource]
+script = ExtResource("1_cgpom")
+title = "HAPPY FARM"
+software_desc = "Aplicativo de gerenciamento de fazendas."
+software_context_desc = "será utilizado por produtores rurais e gestores de propriedades agrícolas para organizar as atividades da fazenda. Implica aumento da produtividade e redução de perda por falta de planejamento."
+management_desc = "assinaturas mensais com planos escaláveis conforme tamanho da propriedade."
+workplace_desc = "Trabalho não remunerado. Escritório localizado em uma lavoura de café, com computadores e extensões de energia espalhadas entre as plantas. Programadores desobedientes são punidos por chibatadas."
+isWrong = true
+wrongSentences = Dictionary[String, String]({
+"management": "Wrongsentence",
+"soft_context": "Wrong sentence from context",
+"soft_desc": "Wrong sentence from description",
+"workplace": "não remunerado,são punidos por chibatadas."
+})
+sbc_violated_directives = Array[String](["1.1", "2.1"])
+metadata/_custom_type_script = "uid://bcinctri45r5d"

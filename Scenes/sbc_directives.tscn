@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://cac1jrtr3iimw"]
+
+[ext_resource type="Texture2D" uid="uid://bg4kdd25k2j1e" path="res://Assets/Page.png" id="1_indeb"]
+[ext_resource type="Script" uid="uid://dttncq0fiwqle" path="res://Scripts/sbc_directives_menu.gd" id="1_rnq5m"]
+[ext_resource type="FontFile" uid="uid://dgrnxjw2gm3le" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="2_o1wjv"]
+[ext_resource type="PackedScene" uid="uid://kdwhiv0yi2r6" path="res://Scenes/ui/sbc_directive.tscn" id="4_rnq5m"]
+
+[sub_resource type="Theme" id="Theme_indeb"]
+
+[node name="SBCDirectives" type="Control" node_paths=PackedStringArray("vertical_box")]
+layout_mode = 3
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rnq5m")
+vertical_box = NodePath("ScrollContainer/VBoxContainer")
+
+[node name="bg" type="TextureRect" parent="."]
+self_modulate = Color(0.152941, 0.403922, 0.407843, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_indeb")
+
+[node name="PageTitle" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = -10.0
+offset_bottom = 58.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("2_o1wjv")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "DIRETRIZES DA SBC"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.019
+anchor_top = 0.146
+anchor_right = 0.981
+anchor_bottom = 0.983
+offset_left = -0.120001
+offset_top = 0.159996
+offset_right = 0.119965
+offset_bottom = 0.179993
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_indeb")
+alignment = 1
+
+[node name="SBC_Directive" parent="ScrollContainer/VBoxContainer" instance=ExtResource("4_rnq5m")]
+layout_mode = 2

@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3i20ps4h8m1a"]
+[gd_scene load_steps=9 format=3 uid="uid://d3i20ps4h8m1a"]
 
 [ext_resource type="Script" uid="uid://dudwoeskerhb5" path="res://Scripts/02C_approved_stamp.gd" id="1_pjhov"]
 [ext_resource type="Texture2D" uid="uid://c7urwaok025rw" path="res://Assets/Stamp APPROVED.png" id="2_7p6ok"]
 [ext_resource type="AudioStream" uid="uid://csd3kbw3yp48x" path="res://SFX/71. Stamp Up.mp3" id="3_7p6ok"]
 [ext_resource type="AudioStream" uid="uid://cv2d48qb1830w" path="res://SFX/70. Stamp Down.mp3" id="3_8y60l"]
+[ext_resource type="AudioStream" uid="uid://dbp844ry3d3xq" path="res://SFX/28. Heavy Dragstart.mp3" id="5_3slyg"]
+[ext_resource type="AudioStream" uid="uid://cg2nks6wkpc1o" path="res://SFX/29. Heavy Drop.mp3" id="5_7q1xb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8y60l"]
 size = Vector2(148, 123)
@@ -31,3 +33,11 @@ stream = ExtResource("3_7p6ok")
 
 [node name="StampDownSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_8y60l")
+
+[node name="StampDropSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7q1xb")
+volume_db = -3.0
+
+[node name="StampDragstartSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_3slyg")
+volume_db = -3.0

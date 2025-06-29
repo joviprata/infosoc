@@ -7,7 +7,14 @@ extends Timer
 var time_up_sound_played := false  # Flag to track if sound has been played
 
 func _ready() -> void:
-	label.text = "3:00"
+	var minutes = int(timer.wait_time / 60)
+	var seconds = int(timer.wait_time) % 60
+
+	var sec_str = str(seconds)
+	if seconds < 10:
+		sec_str = "0" + sec_str
+			
+	label.text = str(minutes) + ":" + sec_str
 
 func _process(delta: float) -> void:
 	if !timer.is_stopped():

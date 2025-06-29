@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5x70y5m6x5ii"]
+[gd_scene load_steps=13 format=3 uid="uid://c5x70y5m6x5ii"]
 
 [ext_resource type="Script" uid="uid://2dqubvwtnnx1" path="res://Scripts/02A_random_character.gd" id="1_h653g"]
 [ext_resource type="Texture2D" uid="uid://iwchgdfaaq28" path="res://Characters/A1.png" id="1_urwsg"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://eawgaap85otd" path="res://Characters/C2.png" id="6_emuvn"]
 [ext_resource type="Texture2D" uid="uid://d3x617sctoxng" path="res://Characters/D2.png" id="7_8rsxj"]
 [ext_resource type="Texture2D" uid="uid://dv6gk5mkjmem5" path="res://Characters/D1.png" id="8_vn8xn"]
+[ext_resource type="AudioStream" uid="uid://1tulgav4qabe" path="res://SFX/84. Traveler Walkin.mp3" id="10_km38b"]
+[ext_resource type="AudioStream" uid="uid://bs2cnwkbilifw" path="res://SFX/85. Traveler Walkout.mp3" id="11_dstr4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_03146"]
 animations = [{
@@ -64,3 +66,9 @@ script = ExtResource("1_h653g")
 sprite_frames = SubResource("SpriteFrames_03146")
 animation = &"B"
 frame_progress = 0.519921
+
+[node name="WalkinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_km38b")
+
+[node name="WalkoutSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_dstr4")
