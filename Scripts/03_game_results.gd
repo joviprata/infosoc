@@ -89,7 +89,7 @@ func add_final_score_display() -> void:
 	stats_label.text += "• Páginas aprovadas corretamente: %d (+%d pontos)\n" % [Global.correctly_approved_pages, Global.correctly_approved_pages * Global.SCORE_CORRECT_APPROVAL]
 	stats_label.text += "• Páginas negadas corretamente: %d (+%d pontos)\n" % [Global.correctly_denied_pages, Global.correctly_denied_pages * Global.SCORE_CORRECT_DENIAL]
 	stats_label.text += "• Princípios selecionados corretamente: %d (+%d pontos)\n" % [Global.correctly_selected_principles, Global.correctly_selected_principles * Global.SCORE_CORRECT_PRINCIPLE]
-	stats_label.text += "• Total de páginas avaliadas: %d" % Global.total_pages_processed
+	stats_label.text += "• Total de páginas avaliadas: %d" % Global.stampedPages.size()
 	stats_label.custom_minimum_size = Vector2(0, 120)
 	stats_label.add_theme_font_override("normal_font", pixelifyFont)
 	stats_label.add_theme_font_size_override("normal_font_size", 18)
