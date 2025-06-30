@@ -1,6 +1,10 @@
 class_name ApprovedStamp
 extends CharacterBody2D
 
+signal stamp_drag_started
+signal on_dropped(body: CharacterBody2D, pos: Vector2)
+signal on_stamped(is_approved : bool)
+
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var stamp_up_sound = $StampUpSound
@@ -11,15 +15,11 @@ extends CharacterBody2D
 @onready var denied_stamp = $"../DeniedStamp"
 @onready var game_scene = $".."
 
-
 var dragging := false
 var was_dragged := false
 var can_interact := true
 
-signal on_dropped(body: CharacterBody2D, pos: Vector2)
-signal on_stamped(is_approved : bool)
-
-#VARIABLE FOR STAMP PAGE BOUNDARIES:
+# VARIABLE FOR STAMP PAGE BOUNDARIES:
 var initial_position: Vector2
 
 func _ready() -> void:
@@ -43,56 +43,71 @@ func _input(event: InputEvent) -> void:
 
 			if result.size() > 0 and result[0].get("collider") == self:
 				stamp_dragstart_sound.play()
+				stamp_drag_started.emit()
 				dragging = true
 				was_dragged = true
 				collision_shape_2d.disabled = true
 
 		elif not event.pressed and dragging:
-			dragging = false
-			was_dragged = false
-			collision_shape_2d.disabled = false
-			set_physics_process(false)
-			can_interact = false
+			_handle_drop(event.position)
 
-			var drop_pos = event.position
-			var stamp_area = Rect2(Vector2(579, -30), Vector2(296, 360))
+func _handle_drop(drop_pos: Vector2) -> void:
+	dragging = false
+	was_dragged = false
+	collision_shape_2d.disabled = false
+	set_physics_process(false)
+	can_interact = false
 
-			if stamp_area.has_point(drop_pos) and game_scene.can_stamp and denied_stamp.can_interact:
-				# Stamping behavior
-				stamp_down_sound.play()
-				position.y += 5
-				await get_tree().create_timer(0.5).timeout
-				position.y -= 5
-				stamp_up_sound.play()
+	var stamp_area = Rect2(Vector2(579, -30), Vector2(296, 360))
 
-				if on_dropped.has_connections():
-					on_dropped.emit(self, drop_pos)
+	if stamp_area.has_point(drop_pos) and game_scene.can_stamp and denied_stamp.can_interact:
+		# Stamping behavior
+		stamp_down_sound.play()
+		position.y += 5
+		await get_tree().create_timer(0.5).timeout
+		position.y -= 5
+		stamp_up_sound.play()
 
-				var tween := create_tween()
-				tween.tween_property(self, "position", initial_position, 0.8)\
-					.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-				await tween.finished
+		if on_dropped.has_connections():
+			on_dropped.emit(self, drop_pos)
 
-				can_interact = true
-				set_physics_process(true)
+		var tween := create_tween()
+		tween.tween_property(self, "position", initial_position, 0.8)\
+			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		await tween.finished
 
-				if on_stamped.has_connections():
-					on_stamped.emit(true)
-			else:
-				stamp_drop_sound.play()
-				
-				# Return to original position
-				var tween := create_tween()
-				tween.tween_property(self, "position", initial_position, 0.8)\
-					.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-				await tween.finished
+		can_interact = true
+		set_physics_process(true)
 
-				can_interact = true
-				set_physics_process(true)
-
+		if on_stamped.has_connections():
+			on_stamped.emit(true)
+	else:
+		stamp_drop_sound.play()
+		await _return_to_initial()
 
 func _physics_process(delta: float) -> void:
 	if dragging:
 		var mouse_pos = get_global_mouse_position()
 		var top_center_offset = Vector2(0, -sprite_2d.texture.get_size().y / 2 + 10)
 		global_position = mouse_pos - top_center_offset
+
+func is_dragging() -> bool:
+	return dragging
+
+func release_drag() -> void:
+	if dragging:
+		dragging = false
+		was_dragged = false
+		collision_shape_2d.disabled = false
+		set_physics_process(false)
+		can_interact = false
+		# Start tween to initial position
+		await _return_to_initial()
+
+func _return_to_initial() -> void:
+	var tween := create_tween()
+	tween.tween_property(self, "position", initial_position, 0.5)\
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	await tween.finished
+	can_interact = true
+	set_physics_process(true)

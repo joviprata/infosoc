@@ -1,14 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://bbl3378ad4hy4"]
+[gd_scene load_steps=33 format=3 uid="uid://bbl3378ad4hy4"]
 
 [ext_resource type="Texture2D" uid="uid://dc7rcg1w0u62" path="res://Assets/Background.png" id="1_i0l5x"]
 [ext_resource type="Script" uid="uid://dfsvwy1kbqb00" path="res://Scripts/02_game.gd" id="1_s865h"]
-[ext_resource type="Script" uid="uid://bcinctri45r5d" path="res://Scripts/page_resource.gd" id="2_itmff"]
 [ext_resource type="Script" uid="uid://bh0de55rnipl8" path="res://Scripts/02D_level_timer.gd" id="2_jcksq"]
 [ext_resource type="Texture2D" uid="uid://dgn1ivupsoov" path="res://Assets/Foreground.png" id="2_s865h"]
 [ext_resource type="AudioStream" uid="uid://cohirh7bb1o4b" path="res://SFX/78. Time Up.mp3" id="3_0r5sl"]
-[ext_resource type="Resource" uid="uid://cvfnmspr43fep" path="res://Resources/page_happy_farm.tres" id="3_f4hpf"]
-[ext_resource type="Resource" uid="uid://du6j0vamhdq04" path="res://Resources/page_saudeja.tres" id="4_pe83e"]
-[ext_resource type="Resource" uid="uid://byue00n0vmidg" path="res://Resources/page_abq.tres" id="5_f4hpf"]
 [ext_resource type="PackedScene" uid="uid://bcwkjth4bkslt" path="res://Scenes/Paper.tscn" id="6_3ja3l"]
 [ext_resource type="FontFile" uid="uid://dgrnxjw2gm3le" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="7_nl3wh"]
 [ext_resource type="PackedScene" uid="uid://c5x70y5m6x5ii" path="res://Scenes/02A_random_character.tscn" id="8_2ngsb"]
@@ -23,8 +19,21 @@
 [ext_resource type="AudioStream" uid="uid://bjv7p24xdpfbh" path="res://SFX/48. Paper Dragstop0.mp3" id="17_44efs"]
 [ext_resource type="AudioStream" uid="uid://djdc8hshuyysu" path="res://SFX/49. Paper Dragstop1.mp3" id="18_itmff"]
 [ext_resource type="AudioStream" uid="uid://b3i2tb3udk430" path="res://SFX/50. Paper Dragstop2.mp3" id="19_f4hpf"]
+[ext_resource type="AudioStream" uid="uid://d4fctxqqsns1r" path="res://SFX/76. Text Reveal2.mp3" id="19_itmff"]
 [ext_resource type="Texture2D" uid="uid://kkou3yham0ch" path="res://Assets/Button Icons.png" id="23_84inw"]
 [ext_resource type="PackedScene" uid="uid://canuqqq77h5dx" path="res://Scenes/02E_sbc_handbook.tscn" id="25_84inw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itmff"]
+atlas = ExtResource("23_84inw")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g2nw"]
+atlas = ExtResource("23_84inw")
+region = Rect2(96, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k58cr"]
+atlas = ExtResource("23_84inw")
+region = Rect2(192, 192, 48, 48)
 
 [sub_resource type="GDScript" id="GDScript_w72w4"]
 
@@ -36,6 +45,10 @@ region = Rect2(0, 0, 48, 48)
 atlas = ExtResource("23_84inw")
 region = Rect2(96, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4hpf"]
+atlas = ExtResource("23_84inw")
+region = Rect2(192, 0, 48, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_pe83e"]
 atlas = ExtResource("23_84inw")
 region = Rect2(0, 96, 48, 48)
@@ -43,6 +56,10 @@ region = Rect2(0, 96, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_84inw"]
 atlas = ExtResource("23_84inw")
 region = Rect2(96, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhqvc"]
+atlas = ExtResource("23_84inw")
+region = Rect2(192, 96, 48, 48)
 
 [node name="Game" type="Control" node_paths=PackedStringArray("level_timer")]
 layout_mode = 3
@@ -52,7 +69,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s865h")
-roundPages = Array[ExtResource("2_itmff")]([ExtResource("3_f4hpf"), ExtResource("4_pe83e"), ExtResource("5_f4hpf")])
 level_timer = NodePath("Level_Timer")
 
 [node name="Level_Start_Countdown" type="Timer" parent="."]
@@ -61,7 +77,7 @@ one_shot = true
 autostart = true
 
 [node name="Level_Timer" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 300.0
 one_shot = true
 script = ExtResource("2_jcksq")
 
@@ -84,6 +100,24 @@ offset_right = 960.0
 offset_bottom = 539.0
 texture = ExtResource("2_s865h")
 
+[node name="Validate_Denied_Text" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 790.0
+offset_top = 38.0
+offset_right = 1165.0
+offset_bottom = 231.0
+scale = Vector2(0.48, 0.48)
+theme_override_colors/font_color = Color(0.87451, 0.964706, 0.960784, 1)
+theme_override_colors/font_shadow_color = Color(0.188235, 0.172549, 0.180392, 1)
+theme_override_fonts/font = ExtResource("7_nl3wh")
+theme_override_font_sizes/font_size = 37
+text = "JUSTIFIQUE
+Selecione até
+cinco princípios
+infringidos"
+vertical_alignment = 1
+
 [node name="Time_Left" type="Label" parent="."]
 layout_mode = 0
 offset_left = 444.0
@@ -94,7 +128,7 @@ theme_override_colors/font_color = Color(0.87451, 0.964706, 0.960784, 1)
 theme_override_colors/font_shadow_color = Color(0.188235, 0.172549, 0.180392, 1)
 theme_override_fonts/font = ExtResource("7_nl3wh")
 theme_override_font_sizes/font_size = 37
-text = "3:00"
+text = "5:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -162,13 +196,28 @@ stream = ExtResource("18_itmff")
 stream = ExtResource("19_f4hpf")
 
 [node name="ApprovedStamp" parent="." instance=ExtResource("10_jcksq")]
-position = Vector2(601, 455)
+position = Vector2(601, 459)
 
 [node name="DeniedStamp" parent="." instance=ExtResource("11_0r5sl")]
-position = Vector2(839, 466)
+position = Vector2(839, 470)
+
+[node name="TextRevealSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_itmff")
+volume_db = -5.0
 
 [node name="SBC_Handbook" parent="." instance=ExtResource("25_84inw")]
 position = Vector2(1062, 250)
+
+[node name="ValidateDeniedButton" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 904.0
+offset_top = 378.0
+offset_right = 952.0
+offset_bottom = 426.0
+texture_normal = SubResource("AtlasTexture_itmff")
+texture_pressed = SubResource("AtlasTexture_3g2nw")
+texture_disabled = SubResource("AtlasTexture_k58cr")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = SubResource("GDScript_w72w4")
@@ -180,6 +229,7 @@ offset_right = 73.0
 offset_bottom = 76.0
 texture_normal = SubResource("AtlasTexture_11cyj")
 texture_pressed = SubResource("AtlasTexture_1gm1t")
+texture_disabled = SubResource("AtlasTexture_f4hpf")
 script = ExtResource("9_x3tfg")
 
 [node name="SBCHandbookButton" type="TextureButton" parent="CanvasLayer"]
@@ -190,6 +240,13 @@ offset_bottom = 76.0
 toggle_mode = true
 texture_normal = SubResource("AtlasTexture_pe83e")
 texture_pressed = SubResource("AtlasTexture_84inw")
+texture_disabled = SubResource("AtlasTexture_dhqvc")
+
+[node name="FadeRect" type="ColorRect" parent="CanvasLayer"]
+modulate = Color(0.223529, 0.192157, 0.294118, 0)
+offset_right = 972.0
+offset_bottom = 546.0
+mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 process_mode = 2
@@ -230,25 +287,25 @@ alignment = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_nl3wh")
 theme_override_font_sizes/font_size = 20
-text = "RESUME"
+text = "CONTINUAR"
 
 [node name="opcoes" type="Button" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_nl3wh")
 theme_override_font_sizes/font_size = 20
-text = "OPTIONS"
+text = "OPÇÕES"
 
 [node name="voltar_menu" type="Button" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_nl3wh")
 theme_override_font_sizes/font_size = 20
-text = "RETURN TO MENU"
+text = "VOLTAR AO MENU"
 
 [node name="sair" type="Button" parent="CanvasLayer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_nl3wh")
 theme_override_font_sizes/font_size = 20
-text = "EXIT"
+text = "SAIR"
 
 [node name="OptionsPanel" type="Panel" parent="CanvasLayer"]
 process_mode = 2
@@ -290,20 +347,20 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("7_nl3wh")
 theme_override_font_sizes/font_size = 20
 toggle_mode = true
-text = "TOGGLE FULLSCREEN"
+text = "TELA CHEIA"
 
 [node name="Toggle_Volume" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_nl3wh")
 theme_override_font_sizes/font_size = 20
 toggle_mode = true
-text = "TOGGLE VOLUME"
+text = "ATIVAR / DESATIVAR SOM"
 
 [node name="Return" type="Button" parent="CanvasLayer/OptionsPanel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_nl3wh")
 theme_override_font_sizes/font_size = 20
-text = "RETURN"
+text = "VOLTAR"
 
 [connection signal="timeout" from="Level_Start_Countdown" to="Level_Timer" method="_on_level_start_countdown_timeout"]
 [connection signal="timeout" from="Level_Timer" to="." method="_on_level_timer_timeout"]
@@ -315,6 +372,7 @@ text = "RETURN"
 [connection signal="on_stamped" from="ApprovedStamp" to="." method="_on_approved_stamp_on_stamped"]
 [connection signal="on_dropped" from="DeniedStamp" to="Page" method="_on_denied_stamp_on_dropped"]
 [connection signal="on_stamped" from="DeniedStamp" to="." method="_on_denied_stamp_on_stamped"]
+[connection signal="pressed" from="ValidateDeniedButton" to="." method="_on_validate_denied_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/PauseButton" method="_on_pressed"]
 [connection signal="toggled" from="CanvasLayer/SBCHandbookButton" to="." method="_on_sbc_handbook_button_toggled"]

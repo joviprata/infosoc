@@ -15,10 +15,9 @@ func _ready() -> void:
 	pass # Replace with function body.
 	
 func start_menu_song():
+	inside_ambience.stop()
 	if not menu_song.is_playing():
 		menu_song.play()
-		#outside_ambience.stop()
-		inside_ambience.stop()
 
 func start_outside_ambience_sound():
 	if not outside_ambience.is_playing():

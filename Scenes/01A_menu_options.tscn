@@ -53,20 +53,20 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_3j5q0")
 theme_override_font_sizes/font_size = 20
 toggle_mode = true
-text = "TOGGLE FULLSCREEN"
+text = "TELA CHEIA"
 
 [node name="Toggle_Volume" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_3j5q0")
 theme_override_font_sizes/font_size = 20
 toggle_mode = true
-text = "TOGGLE VOLUME"
+text = "ATIVAR / DESATIVAR SOM"
 
 [node name="Return_to_Menu" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_3j5q0")
 theme_override_font_sizes/font_size = 20
-text = "RETURN TO MENU"
+text = "VOLTAR AO MENU"
 
 [connection signal="toggled" from="MarginContainer/HBoxContainer/VBoxContainer/Toggle_Fullscreen" to="." method="_on_toggle_fullscreen_toggled"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/VBoxContainer/Toggle_Volume" to="." method="_on_toggle_volume_toggled"]

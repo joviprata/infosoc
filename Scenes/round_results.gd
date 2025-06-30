@@ -11,6 +11,19 @@ var deniedTexture = load("res://Assets/DENIED.png")
 
 func _ready() -> void:
 	show_stamped_pages()
+	show_current_score()
+
+func show_current_score() -> void:
+	# Criar um label para mostrar a pontuação atual
+	var score_label = Label.new()
+	score_label.text = "Pontuação Atual: %d" % Global.current_score
+	score_label.add_theme_font_size_override("font_size", 24)
+	score_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	v_results.add_child(score_label)
+	
+	# Adicionar um separador
+	var separator = HSeparator.new()
+	v_results.add_child(separator)
 		
 
 func _on_next_round_pressed() -> void:

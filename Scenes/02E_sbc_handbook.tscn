@@ -1,10 +1,47 @@
-[gd_scene load_steps=8 format=3 uid="uid://canuqqq77h5dx"]
+[gd_scene load_steps=21 format=3 uid="uid://canuqqq77h5dx"]
 
 [ext_resource type="Script" uid="uid://doyx8vpkcei6n" path="res://Scripts/02E_sbc_handbook.gd" id="1_wa2bn"]
 [ext_resource type="Texture2D" uid="uid://cj71tgcggac6s" path="res://Assets/SBC Handbook Pages/SBC_Handbook_Page_1.png" id="2_ujow6"]
 [ext_resource type="Texture2D" uid="uid://bo2gutc8j3g" path="res://Assets/Page Flip Button Icons.png" id="3_5ib3n"]
 [ext_resource type="AudioStream" uid="uid://d4cgjynj58l31" path="res://SFX/52. Paper Turnpage0.mp3" id="5_5ncnx"]
 [ext_resource type="AudioStream" uid="uid://duln2tyh01k5l" path="res://SFX/53. Paper Turnpage1.mp3" id="6_m1mts"]
+[ext_resource type="AudioStream" uid="uid://c64npi8yy3pxk" path="res://SFX/43. Metal Turnpage.mp3" id="7_4b8va"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ncnx"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1mts"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4b8va"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6j7e"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77suy"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7iddu"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pviks"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pvaea"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwgp4"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xins1"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o36s8"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ewg2m"]
+bg_color = Color(1, 1, 1, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lbfln"]
 atlas = ExtResource("3_5ib3n")
@@ -23,9 +60,70 @@ offset_top = -111.0
 offset_right = 82.0
 offset_bottom = 120.0
 texture = ExtResource("2_ujow6")
+metadata/_edit_use_anchors_ = true
 
 [node name="Page_Texture" type="Sprite2D" parent="."]
 texture = ExtResource("2_ujow6")
+
+[node name="TurnPageSound1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_5ncnx")
+
+[node name="TurnPageSound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_m1mts")
+
+[node name="TurnPageSound3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_m1mts")
+
+[node name="Principle_A" type="Button" parent="."]
+visible = false
+offset_left = -79.0
+offset_top = -108.0
+offset_right = 78.0
+offset_bottom = -56.0
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_5ncnx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_m1mts")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4b8va")
+disabled = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Principle_B" type="Button" parent="."]
+visible = false
+offset_left = -79.0
+offset_top = -54.0
+offset_right = 78.0
+offset_bottom = -2.0
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_e6j7e")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_77suy")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7iddu")
+disabled = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Principle_C" type="Button" parent="."]
+visible = false
+offset_left = -79.0
+offset_right = 78.0
+offset_bottom = 52.0
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_pviks")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pvaea")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pwgp4")
+disabled = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Principle_D" type="Button" parent="."]
+visible = false
+offset_left = -79.0
+offset_top = 54.0
+offset_right = 78.0
+offset_bottom = 106.0
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_xins1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_o36s8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ewg2m")
+disabled = true
+metadata/_edit_use_anchors_ = true
 
 [node name="NextPageButton" type="Button" parent="."]
 offset_left = 58.0
@@ -37,6 +135,7 @@ icon = SubResource("AtlasTexture_lbfln")
 flat = true
 
 [node name="PreviousPageButton" type="Button" parent="."]
+visible = false
 offset_left = 36.0
 offset_top = 78.0
 offset_right = 58.0
@@ -46,14 +145,9 @@ disabled = true
 icon = SubResource("AtlasTexture_5ncnx")
 flat = true
 
-[node name="TurnPageSound1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_5ncnx")
-
-[node name="TurnPageSound2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_m1mts")
-
-[node name="TurnPageSound3" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_m1mts")
+[node name="PrincipleSelectedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_4b8va")
+volume_db = -9.0
 
 [connection signal="pressed" from="NextPageButton" to="." method="_on_next_page_button_pressed"]
 [connection signal="pressed" from="PreviousPageButton" to="." method="_on_previous_page_button_pressed"]
