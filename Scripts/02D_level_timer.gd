@@ -26,6 +26,13 @@ func _process(delta: float) -> void:
 			sec_str = "0" + sec_str
 
 		label.text = str(minutes) + ":" + sec_str
+		
+		
+		# Change color if 1:00 or less
+		if timer.time_left <= 60.0:
+			label.add_theme_color_override("font_color", Color("#f4b41b"))
+		else:
+			label.remove_theme_color_override("font_color")
 
 		# Play sound when 2 second or less remains, only once
 		if timer.time_left <= 2.0 and !time_up_sound_played:

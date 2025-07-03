@@ -1,8 +1,9 @@
 #exatamente a mesma coisa que 02C_approved_stamp.gd, só muda o class_name
 
-
 class_name DeniedStamp
 extends CharacterBody2D
+
+signal stamp_drag_started
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -45,6 +46,7 @@ func _input(event: InputEvent) -> void:
 
 			if result.size() > 0 and result[0].get("collider") == self:
 				stamp_dragstart_sound.play()
+				stamp_drag_started.emit()
 				dragging = true
 				was_dragged = true
 				collision_shape_2d.disabled = true

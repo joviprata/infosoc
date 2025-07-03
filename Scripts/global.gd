@@ -50,21 +50,62 @@ valores da SBC enquanto associada da IFIP'
 }
 
 class PageProperties:
-	var page_resource : PageResource
-	var stampType : bool
+	var page_number : int  # Número da página (1-8)
+	var stampType : bool   # true = aprovado, false = negado
 	var stampPos : Vector2
+	var selected_principles : Array  # Princípios selecionados pelo jogador
+	var is_wrong : bool  # Se a página é inválida
 	
-	func _init(pageREs : PageResource, stampType : bool ,stampPos : Vector2) -> void:
-		self.page_resource = pageREs
+	func _init(pageNum : int, stampType : bool, stampPos : Vector2, principles : Array = [], wrong : bool = false) -> void:
+		self.page_number = pageNum
 		self.stampType = stampType
 		self.stampPos = stampPos
-
-	
+		self.selected_principles = principles
+		self.is_wrong = wrong
 
 # All the Current Round Pages
 var stampedPages : Array[PageProperties]
 
-func add_stamped_page(pageRes:PageResource, stampType : bool ,stampPos : Vector2) -> void:
-	stampedPages.append(PageProperties.new(pageRes,stampType,stampPos))
+func add_stamped_page(pageNum : int, stampType : bool, stampPos : Vector2, principles : Array = [], wrong : bool = false) -> void:
+	print("Adicionando página ao Global: ", pageNum, " | Aprovada: ", stampType, " | Posição: ", stampPos)
+	stampedPages.append(PageProperties.new(pageNum, stampType, stampPos, principles, wrong))
+	print("Total de páginas no Global: ", stampedPages.size())
+
+func clear_stamped_pages() -> void:
+	print("Limpando páginas carimbadas")
+	stampedPages.clear()
+
+# Sistema de Pontuação
+var current_score: int = 0
+var total_pages_processed: int = 0
+var correctly_approved_pages: int = 0
+var correctly_denied_pages: int = 0
+var correctly_selected_principles: int = 0
+
+# Constantes de pontuação
+const SCORE_CORRECT_APPROVAL = 10
+const SCORE_CORRECT_DENIAL = 10
+const SCORE_CORRECT_PRINCIPLE = 2
+
+func reset_score() -> void:
+	current_score = 0
+	total_pages_processed = 0
+	correctly_approved_pages = 0
+	correctly_denied_pages = 0
+	correctly_selected_principles = 0
+
+func add_score_for_correct_approval() -> void:
+	current_score += SCORE_CORRECT_APPROVAL
+	correctly_approved_pages += 1
+	total_pages_processed += 1
+
+func add_score_for_correct_denial() -> void:
+	current_score += SCORE_CORRECT_DENIAL
+	correctly_denied_pages += 1
+	total_pages_processed += 1
+
+func add_score_for_correct_principles(principle_count: int) -> void:
+	current_score += principle_count * SCORE_CORRECT_PRINCIPLE
+	correctly_selected_principles += principle_count
 	
 	
